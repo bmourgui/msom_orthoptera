@@ -1,0 +1,23 @@
+---
+output: github_document
+---
+
+
+```{r include=FALSE}
+knitr::opts_chunk$set(
+  echo=FALSE,
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "README-"
+)
+# Please put your title here to include it in the file below.
+Title <- "Multi-species occupancy models: an effective and flexible framework for studies of insect communities"
+```
+
+# MSOM for insect communities
+
+This repository contains the data and code for our paper:
+
+> B. Mourguiart, T. Couturier, J. Mansons, Y. Braud, A. Besnard , (2020). _`r Title`_, < https://doi.org/10.1111/een.12991>. 
+
+Scripts in the folder [Analysis](Analysis/) allow [formatting the data](Analysis/creation_data.R) and running the [multi-species occupancy model](Analysis/Model_paper_published.R) presented in the article. [Redaction/Rmd_Paper_MSOM.Rmd](Redaction/Rmd_Paper_MSOM.Rmd) produces the entire manuscript.

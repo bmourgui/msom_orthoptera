@@ -1,0 +1,13 @@
+name: shiny_MSOM
+title: shiny_MSOM
+username:
+account: bastien-mourguiart
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 2493118
+bundleId: 3856961
+url: https://bastien-mourguiart.shinyapps.io/shiny_MSOM/
+when: 1605281751.19848
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: www/sp1.jpg

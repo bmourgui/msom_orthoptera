@@ -1,0 +1,1273 @@
+---
+title: "Multi-species occupancy models: an effective and flexible framework for studies of insect communities."
+bibliography: /Redaction/biblio_article.bib
+caption: yes
+csl: ecological-entomology.csl
+fontfamily: times
+fontsize: 12pt
+header-includes:
+- \usepackage{float}
+- \floatplacement{figure}{H}
+output:
+  word_document: 
+      fig_cap: yes    
+      fig_width: 6.5
+  pdf_document:
+    fig_cap: yes
+    fig_width: 6.5
+date: 05 Jan 2021
+---
+
+# 1. Introduction
+
+The study of species distribution and its determinants is of central interest in theoretical and applied ecology [@Rushton2004;@Guisan2005;@Vaughan2005]. By acquiring information on species occupancy patterns in a set of sampling locations and/or sampling periods [@Guillera2017], ecologists are, for instance, able to make inferences about the environmental drivers behind species distribution [@Guisan2005;@Zipkin2009]. This information can in turn be used to plan appropriate management actions given conservation aims or to understand species range dynamics [@Moritz2008;@Pecchi2019].   
+
+Over the last decade, species distribution models (SDMs), relying on the modeling of occurrence data together with environmental covariates, have become the central tool used to study species distribution range or dynamics [@Guisan2005]. Yet most classically used SDMs are based on presence-only data [@Guisan2000;@Guillera2015].  They should be used with caution as their results could be highly biased with sampling effort [@Phillips2009] or with imperfect detection [@Guillera2015]. Besides these models allow inference about indices of species occurrence and not about  probability of species presence, which is the common purpose of ecologists [@Guillera2015]. SDMs based on presence-absence data are considered as more flexible, but inferences about probability of species presence depend on the assumptions that the species detectability is almost perfect and remains constant between sites [@Guillera2015]. Violating those assumptions may induce high bias, especially for species characterised by a limited detectability [@Lahoz2014]. However, decades of studies on detection issues in ecological monitoring have shown that species probabilities of detection are often less than one and may vary with environmental features [@Tyre2003;@Lahoz2014].  
+
+Detection issues generate false absences that in turn may result in strong bias when modeling species distribution [@Tyre2003;@Lahoz2014]. For instance, detection issues can lead to the systematic underestimation of the distribution range [@MacKenzie2002] or can overestimate occupancy turnover [@MacKenzie2003]. In the early 2000s, so-called ‘site-occupancy models’ were specifically developed to solve this issue by simultaneously estimating detection and species occupancy probability [@MacKenzie2002;@Tyre2003]. Since then, they have been rapidly extended to allow modeling the effects of covariates on occupancy and detection probabilities [@MacKenzie2006], to model range dynamics [@Moritz2008], or to take advantage of information on species states at study locations [@Nichols2007]. Initially developed to model occupancy of one focal species, site-occupancy models have been extended to study the occupancy patterns of several species simultaneously [@Dorazio2005]. These models, called multi-species occupancy models (MSOMs), increase precision in occupancy estimations compared to single-species models, especially for rare species, by borrowing information from data-rich species [@Zipkin2009;@Ovaskainen2011]. The hierarchical structure of these models also allows making inferences about the true species richness at study locations, a result that cannot be achieved by species-by-species analysis [@Dorazio2005;@Guillera2019]. MSOMs thus appear to have potential as robust tools for biodiversity analysis or biological assessment [@Mata2014;@Tingley2020;@Devarajan2020]. However, despite these models were developed 15 years ago, only 106 published studies have relied on their use, according to a recent review [@Devarajan2020]. Among them, MSOMs have mainly been used for vertebrates, and only marginally in other taxa such as plants (see @Roth2018) or insects (@Devarajan2020; but see @Mata2014; @Brodie2019; @Dorazio2006), even though these taxa may pose specific detection issues because of their ecology (phenology, for instance). Accordingly, the relevance of MSOMs appears to be still overlooked for a large range of taxa.  
+
+As has been previously highlighted by other authors [@Mata2014;@Brodie2019], since many entomological studies look for changes in insect communities, it is crucial that they take into account imperfect detection. In this context, MSOMs present some clear advantages. First, this approach makes it possible to estimate the occupancy probability even for data-poor taxa, considering for instance the numerous rare, cryptic or elusive species in insect communities, often difficult to detect in the field [@Coddington2009;@Silva2019]. These taxa are usually excluded in common analyses, such as multivariate methods, in which species found at less than 5% of sites are usually removed [@Braak2002;@Pierik2017]. Secondly, both the species- and community- levels can be simultaneously studied with MSOMs [@Mata2014], thanks to the hierarchical structure of their models. The  biodiversity estimators provided by MSOMs, such as species richness, have the advantage of accounting explicitly for the effects of survey-, site- and species-level covariates that may affect detectability, in contrast with most usual estimators [@Tingley2020]. This is of particular interest in entomological studies, since the activity rate and the density of insects—and thus detection probability—are strongly affected by survey and site conditions [@Wolda1988;@Bale2002].   
+
+Orthoptera is an insect group intensively studied in ecology and regularly used as ecological indicator [@Marini2009;@Bazelet2011]. Detectability issues are expected to occur in orthopteran field surveys because of their small size and the strong variations in abundance related to their phenology [@Badenhausser2009]. Detectability is also expected to vary greatly among species [@Badenhausser2009] due to the high diversity in their ecological traits (e.g. mobility, singing activity, mimicry, etc.) and in their habitat preferences (e.g. closed forests vs open grasslands). Orthoptera detection also strongly depends on the sampling techniques used, the effectiveness of which is often influenced by species-specific traits. For instance, highly mobile Orthoptera may flush out when the observer approaches, becoming easily detectable by sight, but hardly detectable using the sweep net or the box quadrat methods. Conversely, sweep netting and box quadrats may increase the detectability of cryptic Orthoptera living close to the ground, often hardly detectable simply by sight. Despite these detection issues, only two studies conducted on single orthopteran species have explicitly dealt with imperfect detection by using site-occupancy models [@MacKenzie2003;@Veran2015]. A third research applied site-occupancy models on orthopteran communities, but using single-species site-occupancy models for each species, without using a standardized sampling design [@Malinowska2014].  
+
+Site-occupancy models require a specific survey design, usually based on temporal replication conducted on a set of sampling sites [@MacKenzie2006]. Replication at the site scale can be obtained through repeated visits, but also by using spatial replicates, multiple observers or multiple sampling techniques depending on the study [@Guillera2017]. A constraint of this method is that this replication increases the sampling effort and the associated costs, precluding the use of this approach by practitioners, notably when the monitoring budget is limited [@Field2005]. On the other hand, this replication is needed to explicitly deal with detection issues and thus to develop robust monitoring [@Yoccoz2001]. Hence, there is a crucial need to develop monitoring that optimizes the trade-off between sampling effort, techniques and effectiveness when designing site-occupancy surveys [@Field2005].  
+
+Most existing grasshopper-sampling protocols are based on estimates of the abundance index or raw presence–absence [@Gardiner2005]. To our knowledge, none were designed to use multispecies site-occupancy models. In this study, we therefore investigated the effectiveness of MSOMs in estimating the occupancy probability of Orthoptera at community level, while accounting for imperfect detection. We also evaluated the ability of MSOMs to assess the efficiency of the survey design under different sampling optimization scenario.
+
+# 2. Materials and methods 
+
+## 2.1 Sampling method and design  
+
+Field surveys were conducted between the 9th August and the 5th October 2018 in the Mercantour National Park, located in the southern French Alps. We selected 81 sampling sites among 179 locations already studied between 1983 and 1988 [@Gueguen1990], in order to encompass all the altitudinal and exposure gradients, ranging from 928 m to 2614 m (mean = 1869 m) above the sea level. Each sampling site consisted in a circle (70 m radius) placed in relatively homogeneous grasslands (Figure 1), and distanced at least 30 m from woodland areas in order to avoid edge effects [@Bieringer2003].   
+
+Within each sampling site, we defined five spatial replicates (hereafter ‘plots’), placed on two lines perpendicular to the mountain slope and spaced at least 30 m from each other, to avoid potential double counts among plots (Figure 1). In few cases (N = 5 sites), this spatial design had to be slightly adapted depending on the sampling site configuration, notably when the grassland area was too small. Thus, some replicates were placed less than 30 m apart or from the forest edge. However, as a minimum distance of 20 m was maintained between plots and from the forest edge, we considered close plots as independent and no effect of the forest proximity on species composition.  
+
+_[Figure 1 about here]_
+
+Each plot consisted of a 30 m2-area, measured by means of a cord, circular or rectangular in shape, depending on ground cover and slope steepness within the sampling site. In particular, circular plots were preferred in sites characterised by gentle slopes and/or shrubby vegetation, while rectangular plots were surveyed on steep slopes and/or in short-sward sites.  
+
+Samplings were carried out by a single trained observer (Y.B.), when the weather conditions were optimal for diurnal Orthoptera activity, *i.e.* no rain, low to moderate wind speed, and sunshine (or temperature exceeding 18°C if cloudy). Species identification was conducted in the field for almost all species, except for _Anonconotus occidentalis_ Carron & Wermeille, 2002 and _Anonconotus ligustinus_ Galvagni, 2002 which can not be distinguished without the examination of genitalia morphology. Hence, individuals that could be both _A. occidentalis_ or _A. ligustinus_ were captured and identified in the laboratory, only _A. occidentalis_ was detected in our inventories. In each plot, orthopteran assemblages were surveyed following three successive steps: (1) one minute of listening to species stridulating in the plot by standing close to its edge, (2) six minutes of sighting species by walking across the entire plot, and (3) two 45-second sweep netting sessions across the entire plot. We chose this execution order for the different sampling techniques because we expected that it would optimize the number of species encountered. Beginning by the listening step lead to record singing species before disturbing them. Then, we expected that walking accross the plot will made the mobile species flush away making them easily detectable by sight. Finally, sweep netting sessions aimed to capture the remanant less mobile species that did not flush away in step 2. By means of this sampling design, detection/non-detection data were available for each sampling technique in each plot at each site. 
+
+
+## 2.2 Multi-species occupancy modeling  
+
+We then modeled the detection/non-detection data of the 15 replicates per sampling site (*i.e.* 5 plots $\times$ 3 sampling techniques) using site-occupancy models [@MacKenzie2002;@Tyre2003]. These models estimate the occupancy probability while modeling imperfect detection through the use of sampling replication conducted at each site. The sampling replication at one site can be achieved with multiple visits, multiple detection methods or multiple observers, as well as with spatial replicates if samplings occur at different locations within a site in a single visit [@MacKenzie2006]. In addition, different types of replication are available, depending on the characteristics of the target species, the study area and the objectives [@Guillera2017]. Among these options, the spatial replicates method was selected in this study, due to field constraints related to the mountain environment (which required long travel to access the sampling sites). When based on spatial replicates, the model assumes that the occupancy status of sampling sites does not change between site replicates (in our case, plots), *i.e.* closure assumption [@Kendall2009]. Because the plots were closed in space and set up in sites of homogeneous vegetation cover, we considered that this assumption was met. We also assumed no false positives, *i.e.* only zero can be reported for a species at a site where it is absent, considering the observer’s identification skills.  
+
+Site-occupancy models disentangle the ecological process, *i.e.* the true occupancy state for a species in a site, from the observational process, *i.e.* the detection/non-detection of a species at a site given it is present. In order to distinguish a true absence from a non-detection, we modeled the raw data for species $i$ at replicate $k$ of site $j$, denoted $X_{i,j,k}$, as the outcome of a Bernoulli random variable, defined by:
+$$X_{i,j,k} \sim Bernoulli(p_{i,j,k} \times Z_{i,j})$$
+where $p_{i,j,k}$ is the detection probability of species $i$ at replicate $k$ of site $j$, and $Z_{i,j}$ is a binary variable corresponding to the occupancy state of site $j$ by species $i$ (latent state). The model for occurrence is specified as:   
+$$Z_{i,j} \sim Bernoulli(\psi_{i,j})$$
+where $\psi_{i,j}$ is the probability that species $i$ occurs at site $j$.   
+
+We estimated the occupancy ($\psi_{i,j}$) and the detection ($p_{i,j,k}$) probabilities of all the species using a multi-species site-occupancy model (MSOM) with single-species occupancy models as building blocks [@Dorazio2005; @Zipkin2009]. The species-specific intercepts and slopes from occupancy and detection models were drawn from a shared, community-level distribution via random effects. Through such hierarchical structure, species with less data "borrow" information from other species that are data-rich, which improves precision in estimates [@Ovaskainen2011; @Zipkin2009]. The linking of species via random effects also allows inferences to be made about the number of species $N_j$ present at each site $j$, including species never detected [@Guillera2019; @Dorazio2006]. In this modelisation process, we followed the ‘data augmentation’ method described by @Royle2007, also including $N_0$ hypothetical species to the dataset, all with zero detection. 
+
+The species-specific effect on the occupancy and the detection probabilities was integrated into the model using the logit link function. Furthermore, covariates supposed to influence the occupancy and the detection probabilities were also considered (altitude and grass height), and the occurrence probability for species $i$ at site $j$ was modelled by incorporating site-specific characteristics.[su] We developped a relatively simple model including just few covariates in order to show MSOMs potential to study Orthoptera distribution but not explaining it. [/su] In particular, linear and quadratic effects of altitude, varying across species, were included to study the altitudinal distribution of Orthoptera.[su] We could assumed that grass height affect Orthoptera occurrence, but we did not add this occupancy covariate as it did not change significantly our results and interpretations, and complexified the model (see ESM 4 for results comparison).[/su] The occupancy model was defined as: 
+
+$$logit(\psi_{i,j}) = \alpha_{0_i} + \alpha_{1_i} \times \text{altitude}_j + \alpha_{2_i} \times {\text{altitude}_j}^2 $$
+where $\alpha_{0_i}$ is the species-level intercept and ($\alpha_{1_i}, \; \alpha_{2_i}$) are the species-specific covariate effects.   
+
+The detection probability for species $i$ was assumed to vary depending on the detection technique used (sighting, listening or sweep netting). We coded the sampling technique covariates as dummy variables, with the intercept corresponding to the sighting technique. We also added the linear effect of grass height on the probability of detecting species using the sighting technique. The grass height was standardized to have mean equal to zero:
+
+$$logit(p_{i,j,k}) = \beta_{0_i} + \beta_{1_i} \times \text{listening}_{j,k} + \beta_{2_i} \times \text{netting}_{j,k} + \beta_{3_i} \times \text{height}_{j,k} \times \text{sighting}_{j,k}$$
+
+with $\beta_{0_i}$, $\beta_{1_i}$ and $\beta_{2_i}$ the species-specific effects of the sampling techniques, and $\beta_{3_i}$ the species-specific covariate effects.   
+
+Each random parameter ($\alpha \text{'s}$ and $\beta \text{'s}$) was modeled as drawn from a normal distribution described by the community mean ($\mu$) and the variance between species ($\sigma^2$): 
+$$\alpha_{0_i} \sim N(\mu_{\alpha_0},\sigma^2_{\alpha_0}), \;\alpha_{1_i} \sim N(\mu_{\alpha_1},\sigma^2_{\alpha_1}), \;...$$
+A latent variable $W_i$ was incorporated in the model to estimate overall species richness. It represents whether species $i$ belongs or not to the community of $N$ species. This binary variable was modeled as the outcome of a Bernoulli random variable, defined by:
+$$W_i \sim Bernoulli(\Omega)$$
+where $\Omega$ describes the probability of belonging to the community. Species detected at least once during the study belong to the community ($W_i=1$, with $i$ from 1 to $N_{obs}$), but species never encountered ($i$ from $N_{obs}$ to $N_{obs}+N_0$) could occupy the sampling area and remain undetected ($W_i=1$ and $\sum X_{i,j,k}=0$) or not belong to the community ($W_i=0$). Therefore, the variable $W_i$ is incorporated in the occupancy model (\ref{eq:1}): 
+$$Z_{i,j}\sim Bernoulli(\psi_{i,j} \times W_i)$$ 
+We implemented the model in a Bayesian framework using the BUGS language and running it in JAGS [@Plummer2003], through the  *jagsUI* package [@Kellner2018] in the R software [@Team2018]. The code is available in Electronic Supplementary Material 1 (ESM 1). Given the lack of prior knowledge of a parameter’s true value, parameters and hyper-parameters were implemented with non-informative priors, following common practice. We used uniform distributions from 0 to 1 for the community level parameter $\Omega$, and for the species-level intercepts of occurrence and detection probabilities ($\alpha_0$ and $\beta_0$). We used wide normal priors (with mean 0 and variance 1000) for the means of hyper-distributions of the site-specific and survey-specific effects (the $\mu_\alpha\text{’s}$ and $\mu_\beta\text{’s}$). We used inverse-gamma priors (*Inv-gamma(0.1, 0.1)*) for the community variances (the $\sigma^2\text{’s}$) of all these parameters. We ran the analysis for three chains of 15,000 iterations with a burn-in of 15,000 iterations and a thinning rate of 15. Convergence was assessed by examining the Gelman-Rubin statistic ($\hat{R}$) for each parameter estimate, with $\hat{R}>1.1$ suggesting a lack of convergence (Gelman & Hill, 2006). Model fit was checked graphically and using the Bayesian p-value (Kéry & Schaub, 2011).
+
+## 2.3 Sampling effectiveness and optimization  
+### _May we reduce the number of spatial replicates?_
+
+We investigated the effectiveness of the sampling design in reaching inventory completeness using three, four or five plots. To this end, the inventory completeness ($C_{j,K}$) at site $j$ after $K$ plots ($K = \{ 3,4,5 \}$) was calculated as the ratio between the observed number of species ($N_{obs_{j,K}}$, raw data) and the true number of species estimated by the MSOM ($\hat{N}_j$). We used the median values of the posterior distributions of the estimated number of species at each sampling site as point estimates for the true species richness. We reduced the number of plots per site by randomly selecting one to four plots among the five samples from the raw data to assess how reducing the number of plots affected the completeness.
+
+We assessed the effectiveness of the sampling design in detecting species through the site-level probability of detecting a species given it is present. We computed for each iteration of the Markov chain Monte Carlo (MCMC) sample the overall detection probability ($P_{i,K}$) for species $i$ to be detected at least once in $K$ plots using the three detection techniques:
+
+$$P_{i,K} =  Pr(\sum_{k=1}^{K}{X_{i,j,k} > 0  |   Z_{i,j} = 1})$$
+
+$$P_{i,K} =  1 - (1 - p_i(\text{sighting}))^K \times (1 - p_i(\text{listening}))^K \times (1 - p_i(\text{nettting}))^K$$
+where $p_i(technique)$ is the plot-level detection probability for species $i$ using the technique cited. We also calculated the site-level detection probability for an "average" species, using estimates of the community-level parameters.
+
+### _Are the three detection techniques necessary?_ 
+The completeness and the overall detection probability (i.e. combining the five plots and the three techniques) were also used to investigate if the sampling techniques were complementary or redundant. Therefore, in order to assess if the sampling protocol could be optimized, the species-specific detection probabilities at site level for each technique were calculated, also verifying the effect of omitting the sweep netting technique. The detection probability without sweep netting was obtained from the expression of $P_{i,K}$ above, in which we removed the term involving sweep netting. We did not try to investigate the effects of removing the listening technique because this is necessary to identify certain species that are tricky to distinguish visually, even for Orthoptera experts [@Walker1964], e.g. _Chorthippus sp_ Fieber, 1852.
+
+
+# 3. Results
+
+```{r load data, message=FALSE, warning=FALSE, include=FALSE, paged.print=FALSE}
+library(dplyr)
+library(tidyr)
+library(coda)
+library(jagsUI)
+library(ggpubr)
+library(ggforce)
+library(readxl)
+library(cowplot)
+
+data <- readxl::read_excel(here::here("Data", "Data_analyse", "data_PNM_ortho_2018.xlsx"))
+
+load(file=here::here("Data", "Data_analyse", "data_model_article.RData"))
+load(here::here("Data", "Data_analyse", "out_articlev2.RData"))
+out <- out_articlev2
+
+data_summary <- function(x) {
+  m <- median(x)
+  ymin <- quantile(x=x, 0.25)
+  ymax <- quantile(x=x, 0.75)
+  return(c(y=m,ymin=ymin[[1]],ymax=ymax[[1]]))
+}
+```
+
+
+```{r message=FALSE, warning=FALSE, include=FALSE, paged.print=FALSE}
+#Description occurrences dans les donnees
+occurrence <- data.frame("nb_detection"=colSums(tab_contingence[,-c(1,2)]),
+                         "pource_detection"=colSums(tab_contingence[,-c(1,2)])/nrow(tab_contingence))
+
+sum(occurrence$pource_detection<0.05) -> nb_rare_sp #nombre d'especes detectees dans - de 5% des releves
+
+occurrence %>%
+  arrange(-nb_detection) %>%
+  mutate("cum_occ"=cumsum(nb_detection/2222)) %>%
+  count(cum_occ<0.5) -> abundant_sp
+nb_abundant_sp <- abundant_sp[2,2]
+```
+As a result of field surveys, we collected 2222 presence data at the plot level (from the three sampling techniques combined) in 405 plots within the 81 sampling sites, belonging to 56 Orthoptera species (ESM 2, Table S1). *Eight (`r nb_abundant_sp`)* species represented more than 50% of the presence data, while almost half (N = `r nb_rare_sp`) of the observed Orthoptera were detected on less than 5% of the plots. Besides, the true number of species estimated by the model was `r round(out$mean$N, 0)` ($CrI_{95\%}$ = [`r round(out$q2.5$N, 0)`; `r round(out$q97.5$N, 0)`]).  
+
+Species-by-species results concerning estimations of occupancy and detection probabilities can be consulted on the shinyapps web application (see details in ESM 3). 
+
+
+## 3.1. Effects of environmental parameters on the occupancy and the detection probabilities
+
+The MSOM method allowed us to investigate the effects of environmental covariates on the occupancy and detection probabilities at both community and species level (Figure 2; see details in ESM 3; ESM 2 Table S2 and Table S3). The overall trends at the community-level are represented by the average species response curves (Figure 2, top panels). They informed us that species tend to have their distribution optimum in the middle altitudinal range (Figure 2, a) and their detectability influenced positively, but not significantly, by the grass height (Figure 2, d). MSOM enabled us to characterize species response along the altitudinal gradient (Figure 2, left panels; see details in ESM 3), giving us predictions of the altitudinal optimum of each species. Although the precision decreased for species with low presence data (wider credible intervals: Figure 2, c), the prediction was still informative in terms of optimum position. In addition, the effect of grass height on the probability of detecting a species by sight was also estimated (Figure 2, right panels; ESM3 for details), highlighting variations among species, with some Orthoptera more detectable in tall grass (Figure 2, e), and others less detectable with increasing grass height (Figure 2, f).  
+
+_[Figure 2 about here]_
+
+```{r fig.cap="Effect of the altitude on the occupancy probability for (a) an average species at the community-level, (b) \\textit{Gomphocerus sibiricus sibiricus}, (c) \\textit{Antaxius pedestris}, and effect of the grass height on the probability of sighting (d) an average species at the community-level, (e) \\textit{Podisma dechambrei} and (f) \\textit{Euthystira brachyptera}. The solid lines represent the posterior mean, and the dashed lines correspond to the 95\\% credible interval.  \\label{cova_effect}", echo=FALSE, fig.align="center", message=FALSE, warning=FALSE, paged.print=FALSE, fig.pos="H", fig.width=6.5, fig.height=8, dpi=800}
+
+
+alti.min <- floor(min(cov.sites$altitude)/100)*100
+alti.max <- ceiling(max(cov.sites$altitude)/100)*100
+o.ele <- seq(alti.min,alti.max,,500)
+mean.ele <- cov.sites_mean[1,1]
+sd.ele <- cov.sites_sd[1,1]
+ele.pred <- (o.ele - mean.ele)/sd.ele
+
+
+tmp <- out$sims.list
+nsamp <- length(tmp[[1]])
+predC <- array(NA, dim=c(500, nsamp))
+
+for (m in 1:nsamp){
+  predC[,m] <- plogis(tmp$mu.a0[m] + tmp$mu.a1[m]*ele.pred + tmp$mu.a2[m]*ele.pred^2)
+}
+pmC <- apply(predC, 1, mean)
+criC <- apply(predC, 1, function(x)quantile(x, prob=c(0.025,0.975)))
+
+
+#Par especes
+predEsp <- array(0, dim=c(500, nsamp, 3))
+a <- 1
+for (i in c(22,4)){
+  for (m in 1: nsamp){
+    predEsp[,m,a] <- plogis(tmp$a0[m,i] + tmp$a1[m,i]*ele.pred + tmp$a2[m,i]*ele.pred^2)
+  }
+  a <- a+1
+}
+pmEsp <- apply(predEsp, c(1,3), mean)
+criEsp <- apply(predEsp, c(1,3), function(x)quantile(x, prob=c(0.025,0.975)))
+pmEsp <- data.frame("Gomphocerus sibiricus sibiricus" = pmEsp[,1],
+                    "Antaxius pedestris" = pmEsp[,2])
+criEsp <- data.frame("Gomphocerus sibiricus sibiricus inf" = criEsp[1,,1],
+                      "Antaxius pedestris inf" = criEsp[1,,2],
+                      "Gomphocerus sibiricus sibiricus max" = criEsp[2,,1],
+                      "Antaxius pedestris max" = criEsp[2,,2])
+
+
+data.frame("Altitude"=o.ele,
+           "proba"=pmC,
+           "probamin"=criC[1,],
+           "probasup"=criC[2,]) %>%
+ggplot(aes(x=Altitude)) +
+  geom_line(aes(y=proba)) +
+  geom_line(aes(y=probamin), lty=2, colour="grey") +
+  geom_line(aes(y=probasup), lty=2, colour="grey") +
+  scale_color_manual(values=c("blue")) +
+  ylab("") +
+  theme_classic() +
+  theme(legend.position = "none",
+        axis.title.x = element_blank(),
+        axis.title.y = element_blank(), 
+        axis.text.x = element_blank(), 
+        axis.text.y=element_text(size=16),
+        plot.margin=margin(t=0.2, r=0, b=0, l=0, unit="cm")) -> occu_commu
+
+
+tab_contingence %>%
+  select(station, `Gomphocerus sibiricus sibiricus`) %>%
+  group_by(station) %>%
+  summarise("Gomphocerus sibiricus sibiricus"=max(`Gomphocerus sibiricus sibiricus`)) %>%
+  mutate(`Gomphocerus sibiricus sibiricus`=as.numeric(`Gomphocerus sibiricus sibiricus`)) %>%
+  inner_join(cov.sites) %>%
+  select(altitude,`Gomphocerus sibiricus sibiricus`) -> alti.gompho
+
+
+data.frame("occu"=pmEsp[,"Gomphocerus.sibiricus.sibiricus"], 
+           "occu_min"=criEsp[,"Gomphocerus.sibiricus.sibiricus.inf"], 
+           "occu_max"=criEsp[,"Gomphocerus.sibiricus.sibiricus.max"]) %>%
+  ggplot(aes(x=o.ele, y=occu)) +
+  geom_line(aes(y=occu)) +
+  geom_line(aes(y=occu_min), lty=2, colour="grey") +
+  geom_line(aes(y=occu_max), lty=2, colour="grey") +
+  #geom_jitter(data=alti.gompho, aes(x=altitude, y=`Gomphocerus sibiricus sibiricus`), 
+  #            shape=4, colour="grey", position = position_jitter(width=0, height=0.005)) +
+  #geom_rug(data=alti.gompho, mapping=aes(x=altitude, color=`Gomphocerus sibiricus sibiricus`, size=`Gomphocerus sibiricus sibiricus`), inherit.aes = F) +
+  ylab("Occupancy probability") +
+  #geom_ribbon(aes(ymin=occu_min, ymax=occu_max), fill="blue", alpha=0.25) +
+  theme_classic() +
+  theme(legend.position = "none",
+        axis.title.x = element_blank(),
+        axis.title.y = element_text(size=18), 
+        axis.text.x = element_blank(), 
+        axis.text.y=element_text(size=16)) +
+  scale_color_manual(values=c("grey40","black")) +
+  scale_size_manual(values=c(0.5,1)) +
+  ylim(c(-0.05, 1.05)) -> occu_gompho
+
+
+
+tab_contingence %>%
+  select(station, `Antaxius pedestris`) %>%
+  group_by(station) %>%
+  summarise("Antaxius pedestris"=max(`Antaxius pedestris`)) %>%
+  mutate(`Antaxius pedestris`=as.numeric(`Antaxius pedestris`)) %>%
+  inner_join(cov.sites) %>%
+  select(altitude,`Antaxius pedestris`) -> alti.pezo
+
+
+data.frame("occu"=pmEsp[,"Antaxius.pedestris"], 
+           "occu_min"=criEsp[,"Antaxius.pedestris.inf"], 
+           "occu_max"=criEsp[,"Antaxius.pedestris.max"]) %>%
+  ggplot(aes(x=o.ele, y=occu)) +
+  geom_line(aes(y=occu)) +
+  geom_line(aes(y=occu_min), lty=2, colour="grey") +
+  geom_line(aes(y=occu_max), lty=2, colour="grey") +
+  #geom_jitter(data=alti.pezo, aes(x=altitude, y=`Antaxius pedestris`), 
+  #            shape=4, colour="grey", position = position_jitter(width=0, height=0.005)) +
+  #geom_rug(data=alti.pezo, mapping=aes(x=altitude, color=`Antaxius pedestris`, size=`Antaxius pedestris`), inherit.aes = F) +
+  ylab("") +
+  xlab("Altitude (m)") +
+  #geom_ribbon(aes(ymin=occu_min, ymax=occu_max), fill="blue", alpha=0.25) +
+  theme_classic() +
+  theme(legend.position = "none",
+        axis.title.x = element_text(size=18),
+        axis.title.y = element_blank(), 
+        axis.text.x = element_text(size=16), 
+        axis.text.y=element_text(size=16)) +
+  scale_color_manual(values=c("grey40","black")) +
+  scale_size_manual(values=c(0.5,1)) +
+  ylim(-0.05,1.05) -> occu_pezo
+
+
+#Prediction effet detection selon la hauteur d'herbe a l'echelle de la communaute
+hauteur.min <- min(cov.detection$hauteur)
+hauteur.max <- max(cov.detection$hauteur)
+o.hauteur <- seq(hauteur.min, hauteur.max,,500)
+mean.hauteur <- cov.detection_mean[1,2]
+sd.hauteur <- cov.detection_sd[1,2]
+hauteur.pred <- (o.hauteur - mean.hauteur)/sd.hauteur
+
+#Vue
+predC.hauteur <- array(NA, dim=c(length(o.hauteur), nsamp))
+for (m in 1:nsamp){
+  predC.hauteur[,m] <- plogis(tmp$mu.b0[m] + tmp$mu.b3[m]*hauteur.pred)
+}
+pmC.hauteur <- apply(predC.hauteur, 1, mean)
+criC.hauteur <- apply(predC.hauteur, 1, function(x)quantile(x, prob=c(0.025,0.975)))
+
+#Par especes
+predEsp.hauteur <- array(0, dim=c(500, nsamp, 3))
+a <- 1
+for (i in c(40,21)){
+  for (m in 1: nsamp){
+    predEsp.hauteur[,m,a] <- plogis(tmp$b0[m,i] + tmp$b3[m,i]*hauteur.pred)
+  }
+  a <- a+1
+}
+
+pmEsp.hauteur <- apply(predEsp.hauteur, c(1,3), mean)
+criEsp.hauteur <- apply(predEsp.hauteur, c(1,3), function(x)quantile(x, prob=c(0.025,0.975)))
+pmEsp.hauteur <- data.frame("Podisma dechambrei" = pmEsp.hauteur[,1],
+                    "Euthystira brachyptera" = pmEsp.hauteur[,2])
+criEsp.hauteur <- data.frame("Podisma dechambrei inf" = criEsp.hauteur[1,,1],
+                      "Euthystira brachyptera inf" = criEsp.hauteur[1,,2],
+                      "Podisma dechambrei max" = criEsp.hauteur[2,,1],
+                      "Euthystira brachyptera max" = criEsp.hauteur[2,,2])
+
+
+data.frame("Height"=o.hauteur,
+           "proba"=pmC.hauteur,
+           "probamin"=criC.hauteur[1,],
+           "probasup"=criC.hauteur[2,]) %>%
+ggplot(aes(x=Height)) +
+  geom_line(aes(y=proba)) +
+  geom_line(aes(y=probamin), lty=2, colour="grey") +
+  geom_line(aes(y=probasup), lty=2, colour="grey") +
+  scale_color_manual(values=c("blue")) +
+  ylab("") +
+  theme_classic() +
+  theme(legend.position = "none",
+        axis.title.x = element_blank(),
+        axis.title.y = element_blank(), 
+        axis.text.x = element_blank(), 
+        axis.text.y=element_text(size=16)) -> detect_commu
+
+data %>%
+  mutate("det"=vu) %>%
+  select(c(station, releve, hauteur,taxon , det)) %>%
+  spread(taxon, det) -> tab_vu
+tab_vu[is.na(tab_vu)] <- 0
+
+
+data.frame("det"=pmEsp.hauteur[,"Podisma.dechambrei"], 
+           "det_min"=criEsp.hauteur[,"Podisma.dechambrei.inf"], 
+           "det_max"=criEsp.hauteur[,"Podisma.dechambrei.max"]) %>%
+  ggplot(aes(x=o.hauteur, y=det)) +
+  geom_line(aes(y=det)) +
+  geom_line(aes(y=det_min), lty=2, colour="grey") +
+  geom_line(aes(y=det_max), lty=2, colour="grey") +
+  #geom_jitter(data=tab_vu, aes(x=hauteur, y=`Podisma dechambrei`), 
+  #            shape=4, colour="grey", position = position_jitter(width=0, height=0.015)) +
+  ylab("Detection probability") +
+  theme_classic() +
+  ylim(c(-0.05,1.05)) +
+  theme(legend.position = "none",
+        axis.title.x = element_blank(),
+        axis.title.y = element_text(size=18), 
+        axis.text.x = element_blank(), 
+        axis.text.y=element_text(size=16)) +
+  scale_color_manual(values=c("grey40","black")) +
+  scale_size_manual(values=c(0.5,1))  -> detect_Y.bey
+
+data.frame("det"=pmEsp.hauteur[,"Euthystira.brachyptera"], 
+           "det_min"=criEsp.hauteur[,"Euthystira.brachyptera.inf"], 
+           "det_max"=criEsp.hauteur[,"Euthystira.brachyptera.max"]) %>%
+  ggplot(aes(x=o.hauteur, y=det)) +
+  xlab("Grass height (cm)")  +
+  ylab("") +
+  ylim(c(-0.05,1.05)) +
+  geom_line(aes(y=det)) +
+  geom_line(aes(y=det_min), lty=2, colour="grey") +
+  geom_line(aes(y=det_max), lty=2, colour="grey") +
+  #geom_jitter(data=tab_vu, aes(x=hauteur, y=`Euthystira brachyptera`), 
+  #            shape=4, colour="grey", position = position_jitter(width=0, height=0.015)) +
+  theme_classic() +
+  theme(legend.position = "none",
+        axis.title.x = element_text(size=18),
+        axis.title.y = element_blank(), 
+        axis.text.x = element_text(size=16), 
+        axis.text.y=element_text(size=16)) +
+  scale_color_manual(values=c("grey40","black")) +
+  scale_size_manual(values=c(0.5,1)) -> detect_S.nig
+
+
+plot_grid(occu_commu, detect_commu, occu_gompho,  detect_Y.bey, occu_pezo, detect_S.nig, ncol=2, nrow=3, labels = c("a","d","b","e","c","f"), align="hv", 
+                   label_x = 0.5,
+                   label_y = 1.1,
+          label_size = 18) +
+  theme(plot.margin=margin(t=0.8, r=0, b=0, l=0, unit="cm")) -> figure2
+
+
+
+```
+
+## 3.2. Sampling effectiveness and optimization
+
+```{r completeness calculation, message=FALSE, warning=FALSE, include=FALSE}
+
+data %>%
+  filter(taxon != "Gomphocerinae sp") %>%
+  filter(taxon != "Calliptamus sp") %>%
+  filter(taxon != "Oedipoda sp") %>%
+  filter(taxon != "Mantis religiosa") %>%
+  filter(taxon != "Pijnackeria masettii") -> data
+
+#creation tableau de contingence avec les donnees de detection a l'ouie
+#les donnees de detection/non detection de l'ensemble des especes par replicat lors de la phase d'ecoute
+data %>%
+  mutate("det"=entendu+vu) %>%
+  select(c(station, releve, taxon , det)) %>%
+  spread(taxon, det) -> tab_without_net
+tab_without_net[is.na(tab_without_net)] <- 0
+tab_without_net[,-c(1,2)] <- mutate_all(as.data.frame(tab_without_net[,-c(1,2)]>0),as.numeric)
+
+
+#rich <- data.frame("station"=NA,"1r_omit"=NA,"2r_omit"=NA,"3r_omit"=NA, "4r_omit"=NA, "5r_omit"=NA,"1r_all"=NA,"2r_all"=NA, #"3r_all"=NA, "4r_all"=NA, "5r_all"=NA)
+#a <- 1
+#for (m in 1:1000){
+ # for (i in 1:length(unique(tab_contingence$station))){
+  #  x <- filter(tab_contingence, station == unique(station)[i]) #selection de la station i
+   #s4 <- sample_n(x, size=4, replace=F) #tire 4 releves aleatoirement
+   #s3 <- sample_n(x, size=3, replace=F) #tire 3 releves
+   #s2 <- sample_n(x, size=2, replace=F)
+   #s1 <- sample_n(x, size=1, replace=F)
+   # s_rich5 <- apply(x[,-c(1,2)],2,max) #donnees presence/absence des especes sur la station
+    #s_rich4 <- apply(s4[,-c(1,2)],2,max) 
+    #s_rich3 <- apply(s3[,-c(1,2)],2,max)
+    #s_rich2 <- apply(s2[,-c(1,2)],2,max)
+    #s_rich1 <- apply(s1[,-c(1,2)],2,max)
+    
+    #x_o <- filter(tab_without_net, station == unique(station)[i])
+    #s4_o <- sample_n(x_o, size=4, replace=F) #tire 4 releves aleatoirement
+    #s3_o <- sample_n(x_o, size=3, replace=F) #tire 3 releves
+    #s2_o <- sample_n(x_o, size=2, replace=F)
+    #s1_o <- sample_n(x_o, size=1, replace=F)
+    #s_rich5_o <- apply(x_o[,-c(1,2)],2,max) #donnees presence/absence des especes sur la station
+    #s_rich4_o <- apply(s4_o[,-c(1,2)],2,max) 
+    #s_rich3_o <- apply(s3_o[,-c(1,2)],2,max)
+    #s_rich2_o <- apply(s2_o[,-c(1,2)],2,max)
+    #s_rich1_o <- apply(s1_o[,-c(1,2)],2,max)
+    
+    #rich <- rbind(rich, c(as.character(x[1,]$station),sum(s_rich1_o), sum(s_rich2_o), sum(s_rich3_o), sum(s_rich4_o), sum(s_rich5_o),sum(s_rich1), sum(s_rich2), sum(s_rich3), sum(s_rich4), sum(s_rich5))) #richesse = somme des occurrences
+  #}
+  #a <- a+1
+#}
+
+#releve.labs <- c("1_omit","2_omit","3_omit","4_omit", "5_omit","1_all","2_all", "3_all","4_all", "5_all")
+#names(releve.labs) <- c(colnames(rich[,-1]))
+
+load(here::here("Data", "Data_analyse", "simu_richness.RData"))
+
+#creation tableau avec la proportion de richesse observee pour 3,4 et 5 releves 
+rich %>%
+  slice(-1)  %>%
+  mutate_at(2:11, as.numeric) %>%
+  group_by(station) %>%
+  summarise_all(median) %>%
+  gather("NbReleve","Richesse",2:11) %>%
+  mutate("proportion"=Richesse/rep(out$q50$Nsite,3)) -> prop_rich
+
+prop_rich %>%
+  group_by(NbReleve) %>%
+  summarise_at(2,.funs=c(mean)) -> rich_mean
+
+prop_rich %>%
+  group_by(NbReleve) %>%
+  summarise_at(2,.funs=c(sd)) -> rich_sd
+```
+
+
+```{r fig.cap= "Completeness of inventories at site-level according to the number of plots sampled. \\label{richness_proportion}", echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE, fig.align="center", fig.pos="H", fig.width=6.5, dpi=800}
+
+prop_rich %>%
+  mutate(NbReleve2=as.factor(rep(c(1,2,3,4,5,1,2,3,4,5), each=81)), Techniques=rep(c("2","3"), each=405)) %>%
+  ggplot(aes(x=NbReleve2, y=proportion, fill=Techniques)) +
+  geom_violin(position = position_dodge(0.8), colour="black")  +
+  stat_summary(fun.data=data_summary, color="black", position = position_dodge(0.8)) +
+  geom_sina(shape=4, size=0.8) +
+  #geom_jitter(position = position_dodge2(0.8, preserve = "total", padding=0.2), shape=4, size=0.8) +
+  ylab("Completeness")+ 
+  ylim(c(0,1)) +
+  xlab("Number of plots") +
+  theme_classic() +
+  #facet_grid(.~Techniques, labeller = labeller(Techniques=Techniques.lab)) +
+  scale_fill_manual(name="Sampling", labels=c("without netting", "with all techniques"),values=c("white","grey40")) +
+  theme(axis.title.x = element_text(size =14),
+        axis.title.y = element_text(size=14),
+        axis.text.x = element_text(size=12), 
+        axis.text.y = element_text(size=12),
+        legend.position = c(0.75,.025),
+        legend.justification = c(1,0),
+        legend.direction = "horizontal",
+        legend.title = element_text(size=12),
+        legend.text = element_text(size=12),
+        strip.text.x = element_text(size=12),
+        strip.background = element_rect(size=0)) -> figure3
+```
+
+```{r include=FALSE}
+#probabilite de detection pour une espece moyenne au sens de la communaute
+proba_commu <- as.data.frame(matrix(0, ncol=5, nrow=length(out$sims.list$mu.b0)))
+for (m in 1:nrow(proba_commu)){
+  for (a in 1:5){
+    proba_commu[m,a] <- (1- (1-plogis(out$sims.list$mu.b0[m]+out$sims.list$mu.b2[m]))^a*(1-plogis(out$sims.list$mu.b0[m]+out$sims.list$mu.b1[m]))^a*(1-plogis(out$sims.list$mu.b0[m]))^a)
+  }
+}
+proba_commu %>%
+  gather("NbRep", "proba") %>%
+  group_by(NbRep) %>%
+  summarise("mean"=mean(proba), "inf"=quantile(proba, 0.025),"sup"=quantile(proba, 0.975)) %>%
+  mutate("NbRep"=1:5) -> proba_commu
+
+proba_commu_without_net <- as.data.frame(matrix(0, ncol=5, nrow=length(out$sims.list$mu.b0)))
+for (m in 1:nrow(proba_commu_without_net)){
+  for (a in 1:5){
+    proba_commu_without_net[m,a] <- (1- (1-plogis(out$sims.list$mu.b0[m]+out$sims.list$mu.b1[m]))^a*(1-plogis(out$sims.list$mu.b0[m]))^a)
+  }
+}
+proba_commu_without_net %>%
+  gather("NbRep", "proba") %>%
+  group_by(NbRep) %>%
+  summarise("mean"=mean(proba), "inf"=quantile(proba, 0.025),"sup"=quantile(proba, 0.975)) %>%
+  mutate("NbRep"=1:5) -> proba_commu_without_net
+```
+
+ 
+
+```{r fig.align="center", fig.cap="Mean overall detection probabilities at site-level according to the number of plots sampled for each grasshopper species (grey curves) and for an “average” species (black solid line). Black dashed lines correspond to the boundaries of the 95\\% credibility interval associated to the point estimate of the cumulative probability for an “average” species.  \\label{cumu_prob}", fig.pos="H", fig.width=6.5, message=FALSE, warning=FALSE, dpi=800, include=FALSE, paged.print=FALSE}
+
+#probabilite de detection specifiques
+proba_sp <- array(0, dim=c(nrow(out$sims.list$b0),5,n))
+for (i in 1:n){
+  for (m in 1:nrow(proba_sp)){
+    for (a in 1:5){
+      proba_sp[m,a,i] <- (1-(1-plogis(out$sims.list$b0[m,i]+out$sims.list$b2[m,i]))^a*(1-plogis(out$sims.list$b0[m,i]+out$sims.list$b1[m,i]))^a*(1-plogis(out$sims.list$b0[m,i]))^a)
+    }
+  }
+}
+probam_sp <- apply(proba_sp, c(3,2), mean)
+probainf_sp <- apply(proba_sp, c(3,2), function(x)quantile(x, 0.025))
+probasup_sp <- apply(proba_sp, c(3,2), function(x)quantile(x, 0.975))
+
+#Graphe
+par(mar=c(5,6,2,2), ps=14)
+probam_sp %>%
+  as.data.frame() %>%
+  gather("plot", "det", 1:5) %>%
+  mutate("plot"=rep(1:5, each=n),"sp"=rep(1:n,5)) -> probam_sp_graph
+
+ggplot(data = filter(probam_sp_graph, sp==1), aes(x=plot, y=det, colour="species")) + 
+  geom_line() +
+  ylim(0,1) +
+  theme_classic() +
+  theme(axis.title.x = element_text(size = 14),
+        axis.title.y = element_text(size=14),
+        axis.text.x = element_text(size=12), 
+        axis.text.y = element_text(size=12),
+        legend.position = "none") +
+  xlab("Number of plots") +
+  ylab("Overall detection probability") -> p
+for (i in 2:n){
+  p <- p + geom_line(data = filter(probam_sp_graph, sp==i), aes(x=plot, y=det))
+}
+p +
+  geom_line(data = proba_commu, aes(x=NbRep, y=mean, colour="moyenne"), size=1.5) +
+  geom_line(data = proba_commu, aes(x=NbRep, y=inf, colour="b"), size=1.5, lty=2) +
+  geom_line(data = proba_commu, aes(x=NbRep, y=sup, colour="b"), size=1.5, lty=2) +
+  scale_color_manual(values=c(species=adjustcolor("grey", alpha.f = 0.8),  b=adjustcolor("black", alpha.f = 0.6), moyenne="black"))
+
+```
+
+
+
+```{r message=FALSE, warning=FALSE, include=FALSE, paged.print=FALSE}
+
+X_Si <- X[,1:5,]
+X_Li <- X[,6:10,]
+X_Sw <- X[,11:15,]
+X_All <- X_Si + X_Li + X_Sw
+X_All[X_All>1] <- 1
+
+X_Si.occ <- apply(X_Si, c(1,3), sum)
+X_Si.occ[X_Si.occ>1] <- 1
+X_Li.occ <- apply(X_Li, c(1,3), sum)
+X_Li.occ[X_Li.occ>1] <- 1
+X_Sw.occ <- apply(X_Sw, c(1,3), sum)
+X_Sw.occ[X_Sw.occ>1] <- 1
+X_All.occ <- apply(X_All, c(1,3), sum)
+X_All.occ[X_All.occ>1] <- 1
+```
+
+
+```{r include=FALSE}
+
+
+proba_detection <- data.frame("taxon"=dimnames(X[,,1:n])[[3]], 
+                              "occu"=plogis(out$mean$a0[1:n]), 
+                              "pVu"=plogis(out$mean$b0[1:n]), 
+                              "pE"=plogis(out$mean$b0[1:n]+out$mean$b1[1:n]), 
+                              "pF"=plogis(out$mean$b0[1:n]+out$mean$b2[1:n]))
+
+proba_meth_sp <- array(0, dim=c(length(out$sims.list$mu.b0),10,n))
+for (i in 1:n){
+  for (m in 1:dim(proba_meth_sp)[1]){
+    proba_meth_sp[m,1,i] <- (1-(1-plogis(out$sims.list$b0[m,i]+out$sims.list$b1[m,i]))*(1-plogis(out$sims.list$b0[m,i]))) #sans fauche        
+    proba_meth_sp[m,2,i] <- (1-(1-plogis(out$sims.list$b0[m,i]+out$sims.list$b2[m,i]))*(1-plogis(out$sims.list$b0[m,i]+out$sims.list$b1[m,i]))*(1-plogis(out$sims.list$b0[m,i]))) #complet
+    
+    proba_meth_sp[m,3,i] <- (1-(1-plogis(out$sims.list$b0[m,i]+out$sims.list$b1[m,i]))^2*(1-plogis(out$sims.list$b0[m,i]))^2) #sans fauche        
+    proba_meth_sp[m,4,i] <- (1-(1-plogis(out$sims.list$b0[m,i]+out$sims.list$b2[m,i]))^2*(1-plogis(out$sims.list$b0[m,i]+out$sims.list$b1[m,i]))^2*(1-plogis(out$sims.list$b0[m,i]))^2) #complet
+    
+    proba_meth_sp[m,5,i] <- (1-(1-plogis(out$sims.list$b0[m,i]+out$sims.list$b1[m,i]))^3*(1-plogis(out$sims.list$b0[m,i]))^3) #sans fauche        
+    proba_meth_sp[m,6,i] <- (1-(1-plogis(out$sims.list$b0[m,i]+out$sims.list$b2[m,i]))^3*(1-plogis(out$sims.list$b0[m,i]+out$sims.list$b1[m,i]))^3*(1-plogis(out$sims.list$b0[m,i]))^3) #complet
+    
+    proba_meth_sp[m,7,i] <- (1-(1-plogis(out$sims.list$b0[m,i]+out$sims.list$b1[m,i]))^4*(1-plogis(out$sims.list$b0[m,i]))^4) #sans fauche        
+    proba_meth_sp[m,8,i] <- (1-(1-plogis(out$sims.list$b0[m,i]+out$sims.list$b2[m,i]))^4*(1-plogis(out$sims.list$b0[m,i]+out$sims.list$b1[m,i]))^4*(1-plogis(out$sims.list$b0[m,i]))^4) #complet
+    
+    proba_meth_sp[m,9,i] <- (1-(1-plogis(out$sims.list$b0[m,i]+out$sims.list$b1[m,i]))^5*(1-plogis(out$sims.list$b0[m,i]))^5) #sans fauche        
+    proba_meth_sp[m,10,i] <- (1-(1-plogis(out$sims.list$b0[m,i]+out$sims.list$b2[m,i]))^5*(1-plogis(out$sims.list$b0[m,i]+out$sims.list$b1[m,i]))^5*(1-plogis(out$sims.list$b0[m,i]))^5) #complet
+}
+  }
+
+probam_meth_sp <- apply(proba_meth_sp, c(3,2), mean)
+probainf_meth_sp <- apply(proba_meth_sp, c(3,2), function(x)quantile(x, 0.025))
+probasup_meth_sp <- apply(proba_meth_sp, c(3,2), function(x)quantile(x, 0.975))
+
+#Probabilite de detection specifique selon la methode
+proba_meth_commu <- array(0, dim=c(length(out$sims.list$mu.b0),5))
+  for (m in 1:nrow(proba_meth_commu)){
+    proba_meth_commu[m,1] <- (1-(1-plogis(out$sims.list$mu.b0[m]))^5) #vue
+    proba_meth_commu[m,2] <- (1-(1-plogis(out$sims.list$mu.b0[m]+out$sims.list$mu.b1[m]))^5) #ouie
+    proba_meth_commu[m,3] <- (1-(1-plogis(out$sims.list$mu.b0[m]+out$sims.list$mu.b2[m]))^5) #fauche
+    proba_meth_commu[m,4] <- (1-(1-plogis(out$sims.list$mu.b0[m]+out$sims.list$mu.b1[m]))^5*(1-plogis(out$sims.list$mu.b0[m]))^5) #sans fauche        
+    proba_meth_commu[m,5] <- (1-(1-plogis(out$sims.list$mu.b0[m]+out$sims.list$mu.b2[m]))^5*(1-plogis(out$sims.list$mu.b0[m]+out$sims.list$mu.b1[m]))^5*(1-plogis(out$sims.list$mu.b0[m]))^5) #complet
+  }
+
+probam_meth_commu <- apply(proba_meth_commu, 2, mean)
+probainf_meth_commu <- apply(proba_meth_commu, 2, function(x)quantile(x, 0.025))
+probasup_meth_commu <- apply(proba_meth_commu, 2, function(x)quantile(x, 0.975))
+
+```
+
+  
+
+```{r fig.cap="Distribution of the species-specific global detection probability at the site-level depending on the detection techniques used. White points represent the median and white segments the first and third quartiles.  \\label{technique_prob}", echo=FALSE, fig.align="center", message=FALSE, warning=FALSE, paged.print=FALSE, fig.pos="H", fig.width=6.5, dpi=800}
+
+probam_meth_sp %>%
+  as.data.frame() %>%
+  gather("Techniques","pR", 1:10) %>% 
+  mutate("Techniques"=as.factor(rep(rep(c("2","3"), each=n), 5))) %>%
+  mutate("Plot"=rep(c(1,2,3,4,5), each=n*2)) -> proba_det_meth_sp
+
+
+proba_det_meth_sp %>%
+  ggplot(aes(x=as.factor(Plot), y=pR, fill=Techniques)) +
+  geom_violin(position = position_dodge(0.8)) +
+  geom_sina(shape=4, size=0.8) +
+  #geom_jitter(position=position_jitterdodge(dodge.width = 0.8), size=1, shape=4) +
+  stat_summary(fun.data=data_summary, color="black", position = position_dodge(0.8)) +
+  ylab("Overall detection probability")+ 
+  ylim(c(-0,1)) +
+  xlab("Number of plots") +
+  theme_classic() +
+  #facet_grid(.~Techniques, labeller = labeller(Techniques=Techniques.lab)) +
+  scale_fill_manual(name="Sampling", labels=c("without netting", "with all techniques"),values=c("white","grey40")) +
+  theme(axis.title.x = element_text(size =14),
+        axis.title.y = element_text(size=14),
+        axis.text.x = element_text(size=12), 
+        axis.text.y = element_text(size=12),
+        legend.position = c(0.75,.025),
+        legend.justification = c(1,0),
+        legend.direction = "horizontal",
+        legend.title = element_text(size=12),
+        legend.text = element_text(size=12),
+        strip.text.x = element_text(size=12),
+        strip.background = element_rect(size=0))  -> figure4
+
+#ggsave("figure2v2.png", plot=figure2, dpi=300,height=210, width=160, units=c("mm"))
+#ggsave("figure3v2.png", plot=figure3, dpi=300, width=160, units=c("mm"))
+#ggsave("figure4v2.png", plot=figure4, dpi=300, width=160, units=c("mm"))
+#ggsave("figure2v2.eps", plot=figure2, width=160, units=c("mm"))
+#ggsave("figure3v2.eps", plot=figure3, width=160, units=c("mm"))
+#ggsave("figure4v2.eps", plot=figure4, width=160, units=c("mm"))
+```
+
+
+Considering all the detection techniques, the average number of species observed at site level was `r round(rich_mean[9,2],2)` ($CrI_{95\%}$ = [`r round(rich_mean[9,2]-1.96*rich_sd[9,2]/81^(0.5),2)`, `r round(rich_mean[9,2]+1.96*rich_sd[9,2]/81^(0.5),2)`]), varying from `r min(prop_rich[prop_rich$NbReleve=="X5r_all",]$Richesse)` to `r max(prop_rich[prop_rich$NbReleve=="X5r_all",]$Richesse)` among sampling sites. Besides, the estimated site-level species richness obtained from the median of posterior distributions of each site was `r round(mean(out$q50$Nsite), 2)` ($CrI_{95\%}$ = [`r round(mean(out$q50$Nsite)-1.96*sd(out$q50$Nsite)/81^(0.5),2)`, `r round(mean(out$q50$Nsite)+1.96*sd(out$q50$Nsite)/81^(0.5),2)`]) on average. The completeness (the ratio between the observed number of species and the estimated number of species) increased with the number of plots (Figure 3). With five plots, `r sum(prop_rich[prop_rich$NbReleve=="X5r_all",]$proportion>0.8)` sites (`r round(sum(prop_rich[prop_rich$NbReleve=="X5r_all",]$proportion>0.8)*100/81,0)`%) had completeness superior to 80%, while considering four plots, this decreased to `r sum(prop_rich[prop_rich$NbReleve=="X4r_all",]$proportion>0.8)` sites (`r round(sum(prop_rich[prop_rich$NbReleve=="X4r_all",]$proportion>0.8)*100/81,0)`%), and it further decreased to `r sum(prop_rich[prop_rich$NbReleve=="X3r_all",]$proportion>0.8)` sites (`r round(sum(prop_rich[prop_rich$NbReleve=="X3r_all",]$proportion>0.8)*100/81,0)`%) when a survey in only three plots was simulated.   
+
+The overall detection probability of an ‘average’ species with all the detection techniques rose sharply when increasing from one to three plots, from `r round(proba_commu[1,2], 2)` ($CrI_{95\%}$ = [`r round(proba_commu[1,3], 2)` ; `r round(proba_commu[1,4], 2)`]) to `r round(proba_commu[3,2], 2)` ($CrI_{95\%}$ = [`r round(proba_commu[3,3], 2)` ; `r round(proba_commu[3,4], 2)`]), then grew slightly from `r round(proba_commu[4,2], 2)` ($CrI_{95\%}$ = [`r round(proba_commu[4,3], 2)` ; `r round(proba_commu[4,4], 2)`]) to `r round(proba_commu[5,2], 2)` ($CrI_{95\%}$ = [`r round(proba_commu[5,3], 2)` ; `r round(proba_commu[5,4], 2)`]) when adding a fourth and fifth plot respectively. The detection probabilities estimated at the site level for each detection technique highlighted the importance of sighting in overall detection and the marginality of the two other techniques (see ESM 3 for details). The detection probability of an ‘average’ species at the site level (five plots) was `r round(probam_meth_commu[1],2)` ($CrI_{95\%}$ = [`r round(probainf_meth_commu[1],2)` ; `r round(probasup_meth_commu[1],2)`]) with the sighting technique only. The average detection probabilities at the site level when considering only the listening or the sweep netting technique were much lower: `r round(probam_meth_commu[2],2)` ($CrI_{95\%}$ = [`r round(probainf_meth_commu[2],2)` ; `r round(probasup_meth_commu[2],2)`]) and `r round(probam_meth_commu[3],2)` ($CrI_{95\%}$ = [`r round(probainf_meth_commu[3],2)` ; `r round(probasup_meth_commu[3],2)`]) respectively. Hence, the detection probability of an ‘average’ species without the sweep netting step (`r round(probam_meth_commu[4],2)`, $CrI_{95\%}$ = [`r round(probainf_meth_commu[4],2)` ; `r round(probasup_meth_commu[4],2)`]) was only slightly lower than the detection probability combining the three techniques.   
+
+_[Figure 3 about here]_
+
+Detection probability varied consistently among species, ranging from `r round(min(probam_meth_sp[,2]),2)` ($CrI_{95\%}$ = [`r round(min(probainf_meth_sp[,2]),2)`; `r round(min(probasup_meth_sp[,2]),2)`]) to `r round(max(probam_meth_sp[,2]),2)` ($CrI_{95\%}$ = [`r round(max(probainf_meth_sp[,2]),2)`; `r round(max(probasup_meth_sp[,2]),2)`]) at the plot level and from `r round(min(probam_meth_sp[,10]),2)` ($CrI_{95\%}$ = [`r round(min(probainf_meth_sp[,10]),2)`; `r round(min(probasup_meth_sp[,10]),2)`]) to `r round(max(probam_meth_sp[,10]),2)` at the site level when all the techniques were used (Figure 4; see shinyapp for details). Some species (`r round(100 * sum(probam_sp[,1]>0.6) / nrow(probam_sp),0)`%) had a high probability of being detected after having surveyed a first plot ($P_{i,1}$ > 0.60). For these species, the overall detection probability followed an asymptotic curve approaching 1 after three or four plots. In contrast, there were species (`r round(100 * sum(probam_sp[,1]<0.3) / nrow(probam_sp),0)`%) with low detection probability in one sampling plot ($P_{i,1}$ < 0.30) for which each additional plot sampled sharply increased the overall detection probability at the site level. For almost all species, the differences in detection probability with or without the netting step were not significant, except for _Oecanthus pellucens_ (Scopoli, 1763) and _Leptophyes punctatissima_ (Bosc, 1792). In these two species, the detection probability decreased from `r round(probam_meth_sp[28,10],2)` ($CrI_{95\%}$ = [`r round(probainf_meth_sp[28,10],2)`;`r round(probasup_meth_sp[28,10],2)`]) to `r round(probam_meth_sp[28,9],2)` ($CrI_{95\%}$ = [`r round(probainf_meth_sp[28,9],2)`;`r round(probasup_meth_sp[28,9],2)`]) for _O. pellucens_, and from `r round(probam_meth_sp[24,10],2)` ($CrI_{95\%}$ = [`r round(probainf_meth_sp[24,10],2)`;`r round(probasup_meth_sp[24,10],2)`]) to `r round(probam_meth_sp[24,9],2)` ($CrI_{95\%}$ = [`r round(probainf_meth_sp[24,9],2)`;`r round(probasup_meth_sp[24,9],2)`]) for _L. punctatissima_ when removing the sweep netting technique.  
+
+_[Figure 4 about here]_
+
+# 4. Discussion
+
+Using the data from our survey, we were able to estimate the occupancy probabilities of 56 Orthoptera species along an elevation gradient in the Mercantour National Park, while accounting for imperfect detection through a multi-species occupancy model. The species-specific detection probabilities varied widely between species, from `r round(min(probam_meth_sp[,10]),2)` to `r round(max(probam_meth_sp[,10]),2)` at the site level. This could be affected, positively or negatively, or unaffected by the grass height, depending on the species. The inventory completeness was more than 0.80 for `r round(sum(prop_rich[prop_rich$NbReleve=="X5r_all",]$proportion>0.8)*100/81,0)`% of the sites, and the overall detection probability at the community level was `r round(proba_commu[5,2], 2)` ($CrI_{95\%}$ = [`r round(proba_commu[5,3], 2)` ; `r round(proba_commu[5,4], 2)`]) when using all of a site’s five plots and the three sampling techniques. These values slightly decreased when we hypothetically reduced the sampling effort by omitting the netting step or by removing one plot, suggesting that the sampling effort could be reduced with minimal impact on estimate quality.  
+
+
+## 4.1. Reliability of MSOM estimates
+
+Reliability of MSOMs estimates first relies on the respect of the two major assumptions implied by the model: site-closure and no false-presence. The closure assumption indicates that if a plot is occupied, all plots within the site are also occupied. Violating this assumption involves underestimation of detection probabilities and then a overestimation of occupancy probabilities [@Kendall2009]. In our study, as we sampled homogeneous grasslands, we were confident about the respect of this assumption. False-presences due to misidentification also induce overestimation of occupancy probabilities if not addressed in the model [@Royle2006]. This assumption is likely to be violated in unexeperienced observer. Yet in our case, the observer is highly skilled.  Hence, we were confident about the respect of the assumptions, but readers should remember those assumptions when planning to use MSOM.  
+
+As expected, the distribution of Orthoptera in our study was structured according to the elevation with (i) maximum in occupancy probabilities of thermophile species such as _Pezotettix giornae_ (Rossi, 1794) estimated at low elevations, (ii) wide estimated distribution for generalist species such as _Stauroderus scalaris_ (Fischer von Waldheim, 1846), and (iii) arctic-alpine species such as _Gomphocerus sibiricus sibiricus_ (Linnaeus, 1767) having their estimated elevation optimum at high elevations. These results are consistent with what is known about Orthoptera species distribution in the Mercantour National Park area [@Gueguen1990; @Lemonnier1999]; Braud, com. pers.). This reliability in the estimated distribution range confirms the relevance of MSOMs to model the effects of biotic or abiotic factors on Orthoptera communities.  
+
+MSOM estimates also proved to be useful to assess the inventory completeness reached at each site, referring in particular to the true number of species present, which is rarely known despite its importance in biological studies. However, in some cases, MSOMs may produce unreliable species richness estimates [@Guillera2019], especially when detection and/or occupancy are low, inducing a lack of obervation and a large number of missing species. Aside from these cases, MSOMs seem to produce reliable estimates in most  scenarios and often outperform commonly used estimators such as _iChao2_ or _Jacknife_ [@Tingley2020]. In this study, the total species richness estimated by MSOM (`r round(out$mean$N, 0)` species, $CrI_{95\%}$ = [`r round(out$q2.5$N, 0)`; `r round(out$q97.5$N, 0)`]) is consistent with the 95 Orthoptera species known to be present above an altitude of 900 m in the Mercantour National Park in grasslands and ecotone habitats (Braud com. pers.). We chose to integrate ecotone species in the list of known species as we encoutered some of those during sampling, such as _Nemobius sylvestris_ (Bosc, 1792) or _Pholidoptera griseoaptera_ (De Geer, 1773). We are thus confident about the reliability of the MSOM estimates at the site level and of the derived inventory completeness.
+
+## 4.2. Importance of detectability in orthopteran studies
+
+Even with the inclusion of the full sampling process (all five plots per sampling site and all three sampling techniques), the overall detection probabilities we estimated were less than one for most species. In some cases it was quite low: for example `r round(probam_meth_sp[20,10],2)` for _Eupholidoptera chabrieri_ (Charpentier, 1825) or `r round(probam_meth_sp[7,10],2)` for _Calliptamus italicus_ (Linnaeus, 1758), confirming the importance of using methods that explicitly correct for imperfect detection. Our results also indicate that detection probability is affected by certain environmental covariates. For instance, we found that Orthoptera detectability by sight may vary with grass height, and that this relationship differs between species. Such a correlation was expected as less mobile species or those living close to the ground, such as _Podisma dechambrei_ Chopard, 1952, are likely to be less detectable with increasing grass height. In contrast, the abundance of some Orthoptera, such as _Euthystira brachyptera_ (Ocskay, 1826), increases with grass height [@Gardiner2018], which in turn may increase their detectability [@McCarthy2013]. A positive relationship between grass height and species detectability could also be explained by an effect of the higher abundance expected at lower elevations, where grass is slightly higher. Such a correlation between detectability and habitat covariate is likely to generate strong bias when studying the distribution of a species and its relationship with habitat if detection is not modeled explicitly [@Lahoz2014]. When detection is affected by a habitat covariate, a model that does not include the effect of this covariate on the detection probability may incorrectly identify this habitat covariate as affecting the occupancy rate of the species [@Lahoz2014]. Such a bias could have huge repercussions in comparative approaches [@Archaux2012], which are commonly used for Orthoptera [e.g. @Bomar2001; @Marini2009; @Loffler2019].  
+
+Some authors have questioned the benefits of modeling imperfect detection [@Welsh2013]. They argue that in some cases, i.e. when occupancy is low and detectability is high, ‘simple models’ perform similarly or better than site-occupancy models. However, this is true only in limited scenarios and assumes high a priori knowledge on the detectability and occupancy of the studied species [@Guillera2014]. Little is known about the detectability of insects, as there are very few studies accounting for imperfect detection [@Kellner2014; @Devarajan2020]. The results obtained studying the orthopteran community in the Mercantour National Park show that occupancy probability is not systematically low, detection probability is not systematically high, and detection probability is highly affected by habitat covariates. These results advocate for the systematic use of MSOMs when studying orthopteran distribution. 
+
+## 4.3. Sampling effectiveness and optimization
+
+The proportion of species richness detected by a survey is a metric commonly used as an indicator of inventory completeness [@Moreno2000; @Foggo2003]. @Foggo2003 used a completeness threshold of 0.8 to indicate that an inventory is representative of the community composition in a given site. In our study, `r round(sum(prop_rich[prop_rich$NbReleve=="X5r_all",]$proportion>0.8)*100/81,0)`% of the sites exceeded this threshold with five plots sampled and with the three sampling techniques used. Hence, the composition of the Orthoptera community seems to be well described at the site scale with our sampling design. Our results also suggest that sampling effort may be reduced, notably by omitting one plot or by removing the sweep netting step, while still maintaining a completeness higher than 0.8 for `r round(sum(prop_rich[prop_rich$NbReleve=="X4r_all",]$proportion>0.8)*100/81,0)`% (omitting one plot) and `r round(sum(prop_rich[prop_rich$NbReleve=="X5r_omit",]$proportion>0.8)*100/81,0)`% (removing sweep netting) of the sites.   
+
+Overall detection probability at the species scale may also be seen as an indicator of sampling efficiency [@Moore2014; @Smart2016]. According to the usual detection probability threshold of 0.95 (see e.g. @Moore2014; @Smart2016), the sampling design we used was effective for `r round(sum(probam_meth_sp[,10]>0.95),0)` of the 56 species observed (`r round(sum(probam_meth_sp[,10]>0.95)*100/56,0)`%). The number of species above this threshold would decline by `r round(sum(probam_meth_sp[,10]>0.95)-sum(probam_meth_sp[,9]>0.95),0)` species by omitting the sweep netting step or by `r round(sum(probam_meth_sp[,10]>0.95)-sum(probam_meth_sp[,8]>0.95),0)` species by removing one plot. The overall detection probability of an ‘average’ species would also decrease, but slightly and not significantly, from `r round(proba_commu[5,2], 2)` ($CrI_{95\%}$ = [`r round(proba_commu[5,3], 2)` ; `r round(proba_commu[5,4], 2)`]) with complete sampling, to `r round(probam_meth_commu[4],2)` ($CrI_{95\%}$ = [`r round(probainf_meth_commu[4],2)` ; `r round(probasup_meth_commu[4],2)`]) without sweep netting, or `r round(proba_commu[4,2], 2)` ($CrI_{95\%}$ = [`r round(proba_commu[4,3], 2)` ; `r round(proba_commu[4,4], 2)`]) with four plots. These results confirm that reducing the field effort is possible with a weak impact on detectability.  
+
+The best way to optimize the sampling effort, either by removing a detection technique or by reducing the number of plots, may depend on the local species composition, the study objectives and the specific characteristics in the field. In our case, whether we chose to remove a plot or the sweep netting step, the loss in detection probability and in inventory completeness was almost the same. Moreover, in each sampling site the time required to perform five sweep netting steps is quite similar to that needed to fulfil a complete survey in a single plot, around 10 minutes each. Hence, in our case there is not really one choice that is better, especially since the costs are associated mainly with the travel time between sampling sites. However, this could be different in other studies. For example, if we had chosen temporal rather than spatial replicates, removing a plot would have been much more worthwhile than omitting the sweep netting. In the same way, while in our study missing some species was not problematic, as our aim was not to obtain an exhaustive inventory of the entire orthopteran community, other study aims may be different. It should be noted that we found that certain species such as _Oecanthus pellucens_ may be missed without the sweep netting technique. It is also important to consider that efficiency of detection techniques depends on their execution order. For instance, walking accross the plot during the sighting step made individuals flushing away and so reduced the efficacity of sweep netting sessions. Hence, execution order for the different techniques should be chose accordingly with the behavior of the species of interest. Thus, we advocate for implementing a pilot study to help identify how sampling can be best optimized depending on the study objectives.
+
+## 4.4. Conclusion
+
+In this paper, we developed a multi-species occupancy model to demonstrate the need to account for imperfect detection in  insect studies and highlight the potential use of MSOM to investigate the sampling efficiency and optimization. As our aim was not to explain ecologically Orthoptera distribution or detactability, we developed a relatively simple model including just few covariates in order to show MSOMs potential.
+
+However, our model could be easily adapted, with a minimal knowledge in Bayesian computation, to other environmental gradients or pressures commonly investigated in entomological studies, such as management practices [@Marini2009], urbanization levels [@Penone2013], land use intensity [@Weking2016] or climate change [@Loffler2019]. Similarly, the effects of other potential covariates on detection probability, such as meteorological (temperature, wind, irradiance, etc.) or phenological variables (date), can easily be implemented in MSOMs. Species traits known to influence detectability, such as mobility capacity, could also be incorporated in MSOMs, for example by grouping species _a priori_ [@Pacifici2014]. However, adding species traits in the model can be tricky when using 'data augmentation' approach to estimate species richness as the traits are unknown for species never detected. The unobserved species traits have to be integrated through the hierarchical structure of MSOMs as latent variables, which could however be complicated for non Bayesian experts. MSOM can also be extended in a dynamic approach to estimate the probability of the colonization or extinction of sites [@Dorazio2010] and thus to study temporal variations in occupancy probability at the community scale. Potential extensions of  MSOMs are numerous. Existing model selection methods adapted to Bayesian hierarchical models [@Hooten2015], thus MSOMs [@Broms2016], may help ecologists to chose the most appropriate model. Bayesian computation can become time-consuming when dealing with large datasets or numerous covariates, and can be a constraint to perform model or variable selection. Yet, alternatives, such as indicator variable selection [@Kuo1998], exist to facilitate variable selection in Bayesian regression models (see: @OHara2009, for a review), thus in MSOMs [@Dorazio2011].  Model selection in MSOMs may be done using information criterion [@Drouilly2018], such as deviance information criterion (DIC; @Spiegelhalter2002) or Watanabe-Akaike information criterion (WAIC; @Watanabe2013), or describing predictive performance, with cross-validation for example [@Zipkin2012].  Current MSOMs are now highly flexible and offer an effective framework to model the state or dynamics of insect communities. They can also be used to optimize the efficiency of the sampling design, which could be of interest to many entomologists. We advocate for their systematic use in entomological studies.
+
+
+# References
+
+# ESM 1
+## Results comparison between model with grass height as occupancy covariate and model without this covariate
+
+The aim of the study was to show MSOMs potential in entomological study. Hence, we developed a relatively simple MSOMs, with just few covariates. However, omitting potential important predictors of Orthoptera occupancy (or detectability) could bias the results. Therefore, we tried another model, similar in the detection model, but with the effect of grass height added in the occupancy model:
+
+$$logit(\psi_{i,j}) = \alpha_{0_i} + \alpha_{1_i} \times \text{altitude}_j + \alpha_{2_i} \times {\text{altitude}_j}^2 + \alpha_{3_i} \times \text{height}_j $$
+with $\alpha_{3_i}$ the linear effect of grass height on the occupancy probability of species $i$.
+
+```{r message=FALSE, warning=FALSE, include=FALSE, paged.print=FALSE}
+library(dplyr)
+library(tidyr)
+library(ggpubr)
+library(ggforce)
+library(readxl)
+library(cowplot)
+
+load(file=here::here("Data", "Data_analyse", "data_model_article.RData"))
+load(file=here::here("Data", "Data_analyse", "out_articlev2.RData"))
+load(file=here::here("Data", "Data_analyse", "out_covarHerbe_bothv2.RData"))
+data <- read_excel(here::here("Data", "Data_analyse", "data_PNM_ortho_2018.xlsx"))
+
+out1 <- out_articlev2
+out2 <- out_covarHerbe_bothv2
+
+data_summary <- function(x) {
+  m <- median(x)
+  ymin <- quantile(x=x, 0.25)
+  ymax <- quantile(x=x, 0.75)
+  return(c(y=m,ymin=ymin[[1]],ymax=ymax[[1]]))
+}
+``` 
+
+We compared the principal results found with this model to those presented in the manuscript. The relationship between the environmental parameters and the detection and occupancy probabilities did not change significantly between the two models (Fig S1). May be because the effect of grass height on the occupancy at the community-level and for most of the species was not significant (Fig S2). The estimated species richness was `r round(out2$mean$N,2)` ($IC_{95\%}$=[`r out2$q2.5$N`, `r out2$q97.5$N`]), which is not signficantly different than the estimate of the simpliest model ($\hat{N}$=`r round(out1$mean$N,2)`, $IC_{95\%}$=[`r out1$q2.5$N`, `r out1$q97.5$N`]). At the site level, the completeness estimates were very similar between the two models (Fig S3). With the simpliest model, 76 sites have completeness superior to 80%, while the second model estimated 77 sites above this threshold. The overall detection probabilities were also very similar (Fig S4). 31 species had an overall detection probability at the site level upper than 95% when considering that grass height influence both detection and occupancy, against 30 species when accounting only for grass height effect on detectability.  
+Results did not change meaningfully, neither did our inferences and interpretations. Hence, we kept the simpliest model to facilitate readers understanting. 
+
+```{r fig.cap="Effect of the altitude on the occupancy probability for (a) an average species at the community-level, (b) \\textit{Gomphocerus sibiricus sibiricus}, (c) \\textit{Antaxius pedestris}, and effect of the grass height on the probability of sighting (d) an average species at the community-level, (e) \\textit{Podisma dechambrei} and (f) \\textit{Euthystira brachyptera}. The colors correspond to model specification, with one model with grass height as occupancy covariate (grey lines) and one without (black lines). The solid lines represent the posterior mean, and the dashed lines correspond to the 95\\% credible interval.  \\label{cova_effect}", echo=FALSE, fig.align="center", message=FALSE, warning=FALSE, paged.print=FALSE,  fig.width=6.5, fig.height=8, dpi=800}
+#### Figure : occupancy ~ altitude ####
+
+alti.min <- floor(min(cov.sites$altitude)/100)*100
+alti.max <- ceiling(max(cov.sites$altitude)/100)*100
+o.ele <- seq(alti.min,alti.max,,500)
+mean.ele <- cov.sites_mean[1,1]
+sd.ele <- cov.sites_sd[1,1]
+ele.pred <- (o.ele - mean.ele)/sd.ele
+
+tmp1 <- out1$sims.list
+tmp2 <- out2$sims.list
+nsamp1 <- length(tmp1[[1]])
+nsamp2 <- length(tmp2[[1]])
+
+predC1 <- array(NA, dim=c(500, nsamp1))
+predC2 <- array(NA, dim=c(500, nsamp2))
+
+for (m in 1:nsamp1){
+  predC1[,m] <- plogis(tmp1$mu.a0[m] + tmp1$mu.a1[m]*ele.pred + tmp1$mu.a2[m]*ele.pred^2)
+}
+pmC1 <- apply(predC1, 1, mean)
+criC1 <- apply(predC1, 1, function(x)quantile(x, prob=c(0.025,0.975)))
+for (m in 1:nsamp2){
+  predC2[,m] <- plogis(tmp2$mu.a0[m] + tmp2$mu.a1[m]*ele.pred + tmp2$mu.a2[m]*ele.pred^2)
+}
+pmC2 <- apply(predC2, 1, mean)
+criC2 <- apply(predC2, 1, function(x)quantile(x, prob=c(0.025,0.975)))
+
+
+
+#Par especes
+predEsp1 <- array(0, dim=c(500, nsamp1, 2))
+a <- 1
+for (i in c(22,4)){
+  for (m in 1: nsamp1){
+    predEsp1[,m,a] <- plogis(tmp1$a0[m,i] + tmp1$a1[m,i]*ele.pred + tmp1$a2[m,i]*ele.pred^2)
+  }
+  a <- a+1
+}
+pmEsp1 <- apply(predEsp1, c(1,3), mean)
+criEsp1 <- apply(predEsp1, c(1,3), function(x)quantile(x, prob=c(0.025,0.975)))
+pmEsp1 <- data.frame("Gomphocerus sibiricus sibiricus" = pmEsp1[,1],
+                    "Antaxius pedestris" = pmEsp1[,2])
+criEsp1 <- data.frame("Gomphocerus sibiricus sibiricus inf" = criEsp1[1,,1],
+                     "Antaxius pedestris inf" = criEsp1[1,,2],
+                     "Gomphocerus sibiricus sibiricus max" = criEsp1[2,,1],
+                     "Antaxius pedestris max" = criEsp1[2,,2])
+
+predEsp2 <- array(0, dim=c(500, nsamp2, 2))
+a <- 1
+for (i in c(22,4)){
+  for (m in 1: nsamp2){
+    predEsp2[,m,a] <- plogis(tmp2$a0[m,i] + tmp2$a1[m,i]*ele.pred + tmp2$a2[m,i]*ele.pred^2)
+  }
+  a <- a+1
+}
+pmEsp2 <- apply(predEsp2, c(1,3), mean)
+criEsp2 <- apply(predEsp2, c(1,3), function(x)quantile(x, prob=c(0.025,0.975)))
+pmEsp2 <- data.frame("Gomphocerus sibiricus sibiricus" = pmEsp2[,1],
+                     "Antaxius pedestris" = pmEsp2[,2])
+criEsp2 <- data.frame("Gomphocerus sibiricus sibiricus inf" = criEsp2[1,,1],
+                      "Antaxius pedestris inf" = criEsp2[1,,2],
+                      "Gomphocerus sibiricus sibiricus max" = criEsp2[2,,1],
+                      "Antaxius pedestris max" = criEsp2[2,,2])
+
+
+data.frame("Altitude"=o.ele,
+           "proba"=pmC1,
+           "probamin"=criC1[1,],
+           "probasup"=criC1[2,]) -> occu1
+data.frame("Altitude"=o.ele,
+           "proba"=pmC2,
+           "probamin"=criC2[1,],
+           "probasup"=criC2[2,]) -> occu2
+
+ggplot() +
+  geom_line(aes(x=occu1$Altitude, y=occu1$proba), colour = "black") +
+  geom_line(aes(x=occu2$Altitude, y=occu2$proba), colour = "grey") +
+  geom_line(aes(x=occu1$Altitude, y=occu1$probamin), lty=2, colour = "black") +
+  geom_line(aes(x=occu2$Altitude, y=occu2$probamin), lty=2, colour = "grey") +
+  geom_line(aes(x=occu1$Altitude, y=occu1$probasup), lty=2, colour = "black") +
+  geom_line(aes(x=occu2$Altitude, y=occu2$probasup), lty=2, colour = "grey") +
+  #scale_color_manual(values=c("blue")) +
+  ylab("") +
+  ylim(c(0,1)) +
+  theme_classic() +
+  theme(legend.position = "none",
+        axis.title.x = element_blank(),
+        axis.title.y = element_blank(), 
+        axis.text.x = element_blank(), 
+        axis.text.y=element_text(size=16),
+        plot.margin=margin(t=0.2, r=0, b=0, l=0, unit="cm")) -> g1
+
+
+tab_contingence %>%
+  select(station, `Gomphocerus sibiricus sibiricus`) %>%
+  group_by(station) %>%
+  summarise("Gomphocerus sibiricus sibiricus"=max(`Gomphocerus sibiricus sibiricus`)) %>%
+  mutate(`Gomphocerus sibiricus sibiricus`=as.numeric(`Gomphocerus sibiricus sibiricus`)) %>%
+  inner_join(cov.sites) %>%
+  select(altitude,`Gomphocerus sibiricus sibiricus`) -> alti.gompho
+
+
+data.frame("occu"=pmEsp1[,"Gomphocerus.sibiricus.sibiricus"], 
+           "occu_min"=criEsp1[,"Gomphocerus.sibiricus.sibiricus.inf"], 
+           "occu_max"=criEsp1[,"Gomphocerus.sibiricus.sibiricus.max"]) -> gompho1
+data.frame("occu"=pmEsp2[,"Gomphocerus.sibiricus.sibiricus"], 
+           "occu_min"=criEsp2[,"Gomphocerus.sibiricus.sibiricus.inf"], 
+           "occu_max"=criEsp2[,"Gomphocerus.sibiricus.sibiricus.max"]) -> gompho2
+
+ggplot() +
+  geom_line(aes(x=o.ele, y=gompho1$occu)) +
+  geom_line(aes(x=o.ele, y=gompho2$occu), colour = "grey") +
+  geom_line(aes(x=o.ele, y=gompho1$occu_min), lty =2) +
+  geom_line(aes(x=o.ele, y=gompho2$occu_min), lty =2, colour = "grey") +
+  geom_line(aes(x=o.ele, y=gompho1$occu_max), lty =2) +
+  geom_line(aes(x=o.ele, y=gompho2$occu_max), lty =2, colour = "grey") +
+  ylab("Occupancy probability") +
+  theme_classic() +
+  theme(legend.position = "none",
+        axis.title.x = element_blank(),
+        axis.title.y = element_text(size=18), 
+        axis.text.x = element_blank(), 
+        axis.text.y=element_text(size=16)) +
+  ylim(c(-0.05, 1.05)) -> g2 #Les trois premieres lignes sont au meme niveau
+
+
+data.frame("occu"=pmEsp1[,"Antaxius.pedestris"], 
+           "occu_min"=criEsp1[,"Antaxius.pedestris.inf"], 
+           "occu_max"=criEsp1[,"Antaxius.pedestris.max"]) -> anta1
+data.frame("occu"=pmEsp2[,"Antaxius.pedestris"], 
+           "occu_min"=criEsp2[,"Antaxius.pedestris.inf"], 
+           "occu_max"=criEsp2[,"Antaxius.pedestris.max"]) -> anta2
+
+ggplot() +
+  geom_line(aes(x=o.ele, y=anta1$occu)) +
+  geom_line(aes(x=o.ele, y=anta2$occu), colour = "grey") +
+  geom_line(aes(x=o.ele, y=anta1$occu_min), lty =2) +
+  geom_line(aes(x=o.ele, y=anta2$occu_min), lty =2, colour = "grey") +
+  geom_line(aes(x=o.ele, y=anta1$occu_max), lty =2) +
+  geom_line(aes(x=o.ele, y=anta2$occu_max), lty =2, colour = "grey") +
+  xlab("Elevation (m)") +
+  theme_classic() +
+  theme(legend.position = "none",
+        axis.title.x = element_text(size=18),
+        axis.title.y = element_blank(), 
+        axis.text.x = element_text(size=16), 
+        axis.text.y=element_text(size=16)) +
+  ylim(c(-0.05, 1.05)) -> g3 #ligne grise et noir quasiment meme chose
+
+#Prediction effet detection selon la hauteur d'herbe a l'echelle de la communaute
+hauteur.min <- min(cov.detection$hauteur)
+hauteur.max <- max(cov.detection$hauteur)
+o.hauteur <- seq(hauteur.min, hauteur.max,,500)
+mean.hauteur <- cov.detection_mean[1,2]
+sd.hauteur <- cov.detection_sd[1,2]
+hauteur.pred <- (o.hauteur - mean.hauteur)/sd.hauteur
+
+#Vue
+predC1.hauteur <- array(NA, dim=c(length(o.hauteur), nsamp1))
+for (m in 1:nsamp1){
+  predC1.hauteur[,m] <- plogis(tmp1$mu.b0[m] + tmp1$mu.b3[m]*hauteur.pred)
+}
+pmC1.hauteur <- apply(predC1.hauteur, 1, mean)
+criC1.hauteur <- apply(predC1.hauteur, 1, function(x)quantile(x, prob=c(0.025,0.975)))
+
+predC2.hauteur <- array(NA, dim=c(length(o.hauteur), nsamp2))
+for (m in 1:nsamp2){
+  predC2.hauteur[,m] <- plogis(tmp2$mu.b0[m] + tmp2$mu.b3[m]*hauteur.pred)
+}
+pmC2.hauteur <- apply(predC2.hauteur, 1, mean)
+criC2.hauteur <- apply(predC2.hauteur, 1, function(x)quantile(x, prob=c(0.025,0.975)))
+
+#Par especes
+predEsp1.hauteur <- array(0, dim=c(500, nsamp1, 3))
+a <- 1
+for (i in c(40,21)){
+  for (m in 1: nsamp1){
+    predEsp1.hauteur[,m,a] <- plogis(tmp1$b0[m,i] + tmp1$b3[m,i]*hauteur.pred)
+  }
+  a <- a+1
+}
+
+pmEsp1.hauteur <- apply(predEsp1.hauteur, c(1,3), mean)
+criEsp1.hauteur <- apply(predEsp1.hauteur, c(1,3), function(x)quantile(x, prob=c(0.025,0.975)))
+pmEsp1.hauteur <- data.frame("Podisma dechambrei" = pmEsp1.hauteur[,1],
+                            "Euthystira brachyptera" = pmEsp1.hauteur[,2])
+criEsp1.hauteur <- data.frame("Podisma dechambrei inf" = criEsp1.hauteur[1,,1],
+                             "Euthystira brachyptera inf" = criEsp1.hauteur[1,,2],
+                             "Podisma dechambrei max" = criEsp1.hauteur[2,,1],
+                             "Euthystira brachyptera max" = criEsp1.hauteur[2,,2])
+
+predEsp2.hauteur <- array(0, dim=c(500, nsamp2, 3))
+a <- 1
+for (i in c(40,21)){
+  for (m in 1: nsamp2){
+    predEsp2.hauteur[,m,a] <- plogis(tmp2$b0[m,i] + tmp2$b3[m,i]*hauteur.pred)
+  }
+  a <- a+1
+}
+
+pmEsp2.hauteur <- apply(predEsp2.hauteur, c(1,3), mean)
+criEsp2.hauteur <- apply(predEsp2.hauteur, c(1,3), function(x)quantile(x, prob=c(0.025,0.975)))
+pmEsp2.hauteur <- data.frame("Podisma dechambrei" = pmEsp2.hauteur[,1],
+                             "Euthystira brachyptera" = pmEsp2.hauteur[,2])
+criEsp2.hauteur <- data.frame("Podisma dechambrei inf" = criEsp2.hauteur[1,,1],
+                              "Euthystira brachyptera inf" = criEsp2.hauteur[1,,2],
+                              "Podisma dechambrei max" = criEsp2.hauteur[2,,1],
+                              "Euthystira brachyptera max" = criEsp2.hauteur[2,,2])
+
+
+
+data.frame("Height"=o.hauteur,
+           "proba"=pmC1.hauteur,
+           "probamin"=criC1.hauteur[1,],
+           "probasup"=criC1.hauteur[2,]) -> det1
+data.frame("Height"=o.hauteur,
+           "proba"=pmC2.hauteur,
+           "probamin"=criC2.hauteur[1,],
+           "probasup"=criC2.hauteur[2,]) -> det2
+
+ggplot() +
+  geom_line(aes(x=det1$Height, y=det1$proba)) +
+  geom_line(aes(x=det2$Height, y=det2$proba), color="grey") +
+  geom_line(aes(x=det1$Height, y=det1$probamin), lty =2) +
+  geom_line(aes(x=det2$Height, y=det2$probamin), lty =2, color="grey") +
+  geom_line(aes(x=det1$Height, y=det1$probasup), lty =2) +
+  geom_line(aes(x=det2$Height, y=det2$probasup), lty =2, color="grey") +
+  ylab("") +
+  theme_classic() +
+  theme(legend.position = "none",
+        axis.title.x = element_blank(),
+        axis.title.y = element_blank(), 
+        axis.text.x = element_blank(), 
+        axis.text.y=element_text(size=16)) +
+  ylim(c(0,1)) -> g4
+
+data %>%
+  mutate("det"=vu) %>%
+  select(c(station, releve, hauteur,taxon , det)) %>%
+  spread(taxon, det) -> tab_vu
+tab_vu[is.na(tab_vu)] <- 0
+
+
+data.frame("det"=pmEsp1.hauteur[,"Podisma.dechambrei"], 
+           "det_min"=criEsp1.hauteur[,"Podisma.dechambrei.inf"], 
+           "det_max"=criEsp1.hauteur[,"Podisma.dechambrei.max"]) -> pod1
+data.frame("det"=pmEsp2.hauteur[,"Podisma.dechambrei"], 
+           "det_min"=criEsp2.hauteur[,"Podisma.dechambrei.inf"], 
+           "det_max"=criEsp2.hauteur[,"Podisma.dechambrei.max"]) -> pod2
+
+ggplot() +
+  geom_line(aes(x=o.hauteur, y=pod1$det)) +
+  geom_line(aes(x=o.hauteur, y=pod2$det), color="grey") +
+  geom_line(aes(x=o.hauteur, y=pod1$det_min), lty =2) +
+  geom_line(aes(x=o.hauteur, y=pod2$det_min), lty =2, color="grey") +
+  geom_line(aes(x=o.hauteur, y=pod1$det_max), lty =2) +
+  geom_line(aes(x=o.hauteur, y=pod2$det_max), lty =2, color="grey") +
+  ylab("Detection probability") +
+  theme_classic() +
+  ylim(c(-0.05,1.05)) +
+  theme(legend.position = "none",
+        axis.title.x = element_blank(),
+        axis.title.y = element_text(size=18), 
+        axis.text.x = element_blank(), 
+        axis.text.y=element_text(size=16)) -> g5
+
+data.frame("det"=pmEsp1.hauteur[,"Euthystira.brachyptera"], 
+           "det_min"=criEsp1.hauteur[,"Euthystira.brachyptera.inf"], 
+           "det_max"=criEsp1.hauteur[,"Euthystira.brachyptera.max"]) -> euth1
+data.frame("det"=pmEsp2.hauteur[,"Euthystira.brachyptera"], 
+           "det_min"=criEsp2.hauteur[,"Euthystira.brachyptera.inf"], 
+           "det_max"=criEsp2.hauteur[,"Euthystira.brachyptera.max"]) -> euth2
+
+ggplot() +
+  geom_line(aes(x=o.hauteur, y=euth1$det)) +
+  geom_line(aes(x=o.hauteur, y=euth2$det), color="grey") +
+  geom_line(aes(x=o.hauteur, y=euth1$det_min), lty =2) +
+  geom_line(aes(x=o.hauteur, y=euth2$det_min), lty =2, color="grey") +
+  geom_line(aes(x=o.hauteur, y=euth1$det_max), lty =2) +
+  geom_line(aes(x=o.hauteur, y=euth2$det_max), lty =2, color="grey") +
+  xlab("Grass height (cm)") +
+  theme_classic() +
+  ylim(c(-0.05,1.05)) +
+  theme(legend.position = "none",
+        axis.title.x = element_text(size=18),
+        axis.title.y = element_blank(), 
+        axis.text.x = element_text(size=16), 
+        axis.text.y=element_text(size=16)) -> g6
+
+
+plot_grid(g1,g4,g2,g5,g3,g6, ncol=2, nrow=3, labels = c("a","d","b","e","c","f"), align="hv", 
+          label_x = 0.5,
+          label_y = 1.1,
+          label_size = 18) +
+  theme(plot.margin=margin(t=0.8, r=0, b=0, l=0, unit="cm"))
+```
+
+
+```{r fig.cap="Estimates of the linear grass height effect on species-specific occupancy probabilities. Black points correspond to medians of posterior distributions, and the segment to the credible interval associated. Segments with solid lines represent significant effects.  \\label{grass_effect}", echo=FALSE, fig.align="center", message=FALSE, warning=FALSE, paged.print=FALSE,  fig.width=6.5, fig.height=8, dpi=800}
+plot(out2$mean$a3[1:n], 1:n, 
+     xlim=c(min(out2$q2.5$a3[1:n]),
+            max(out2$q97.5$a3[1:n])),
+     pch=16, frame=F,
+     xlab="a3", "ylab"="Numéro de l'espèce", col="black")
+abline(v=0)
+abline(h=0:n, lty=3, lwd=0.2)
+abline(v=out2$mean$mu.a3, col="grey", lwd=1.5)
+abline(v=out2$q2.5$mu.a3, col="grey", lty=2)
+abline(v=out2$q97.5$mu.a3, col="grey", lty=2)
+for (i in 1:n){
+  if(out2$q2.5$a3[i]*out2$q97.5$a3[i] > 0){
+    segments(out2$q2.5$a3[i], i,out2$q97.5$a3[i], i, col="black", lwd=1, lty=1)
+  }else{
+    segments(out2$q2.5$a3[i], i,out2$q97.5$a3[i], i, col="grey20", lwd=0.6, lty=2)
+  }
+}
+```
+
+```{r fig.cap="Inventory completeness at site level according to the model used, the number of plots sampled and the detection techniques used. Black dots represent the medians, and black segments represent the first and third quartiles.  \\label{completeness}", echo=FALSE, fig.align="center", message=FALSE, warning=FALSE, paged.print=FALSE,  fig.width=6.5, fig.height=8, dpi=800}
+## Richness estimates ##
+
+
+load(file=here::here("Data", "Data_analyse","simu_richness.RData"))
+
+#creation tableau avec la proportion de richesse observee pour 3,4 et 5 releves 
+rich %>%
+  slice(-1)  %>%
+  mutate_at(2:11, as.numeric) %>%
+  group_by(station) %>%
+  summarise_all(median) %>%
+  gather("NbReleve","Richesse",2:11) %>%
+  mutate("proportion"=Richesse/rep(out1$q50$Nsite,10)) -> prop_rich1
+rich %>%
+  slice(-1)  %>%
+  mutate_at(2:11, as.numeric) %>%
+  group_by(station) %>%
+  summarise_all(median) %>%
+  gather("NbReleve","Richesse",2:11) %>%
+  mutate("proportion"=Richesse/rep(out2$q50$Nsite,10)) -> prop_rich2
+
+prop_rich1 %>%
+  mutate(NbReleve2=as.factor(rep(c(1,2,3,4,5,1,2,3,4,5), each=81)), 
+         Techniques=rep(c("2","3"), each=405), 
+         Model="detection only") -> prop_rich1
+prop_rich2 %>%
+  mutate(NbReleve2=as.factor(rep(c(1,2,3,4,5,1,2,3,4,5), each=81)), 
+         Techniques=rep(c("2","3"), each=405), 
+         Model="occupancy and detection") -> prop_rich2
+
+prop_rich <- rbind(prop_rich1, prop_rich2)#,prop_rich3)
+
+ggplot(prop_rich, aes(x=NbReleve2, y=proportion, fill=Model)) +
+  geom_violin(position = position_dodge(0.8), colour="black")  +
+  geom_sina(shape=4, size=0.8) +
+  #geom_jitter(position = position_dodge2(0.8, preserve = "total", padding=0.2), shape=4, size=0.8) +
+  ylab("Completeness")+ 
+  ylim(c(0,1)) +
+  xlab("Number of plots") +
+  theme_classic() +
+  facet_grid(.~Techniques, labeller = labeller(Techniques=c("2"="Without netting","3"="With netting"))) +
+  scale_fill_manual(name="Grass height effect on", values=c("grey40","grey")) +
+  stat_summary(fun.data=data_summary, color="black", position = position_dodge(0.8)) +
+  theme(axis.title.x = element_text(size =14),
+        axis.title.y = element_text(size=14),
+        axis.text.x = element_text(size=12), 
+        axis.text.y = element_text(size=12),
+        legend.position = c(0.75,.025),
+        legend.justification = c(0.75,0),
+        legend.direction = "horizontal",
+        legend.title = element_text(size=12),
+        legend.text = element_text(size=12),
+        strip.text.x = element_text(size=12),
+        strip.background = element_rect(size=0))
+
+```
+
+
+```{r fig.cap="Distribution of the species-specific overall detection probabilities at the site level depending on the number of sampled plots, the model specification and the detection techniques used. Black dots represent the medians, and black segments represent the first and third quartiles.  \\label{detectability}", echo=FALSE, fig.align="center", message=FALSE, warning=FALSE, paged.print=FALSE,  fig.width=6.5, fig.height=8, dpi=800} 
+## Detectability ##
+n <- 56
+proba_meth_sp1 <- array(0, dim=c(length(out1$sims.list$mu.b0),10,n))
+proba_meth_sp2 <- array(0, dim=c(length(out2$sims.list$mu.b0),10,n))
+for (i in 1:n){
+  for (m in 1:dim(proba_meth_sp1)[1]){
+    proba_meth_sp1[m,1,i] <- (1-(1-plogis(out1$sims.list$b0[m,i]+out1$sims.list$b1[m,i]))*(1-plogis(out1$sims.list$b0[m,i]))) #sans fauche        
+    proba_meth_sp1[m,2,i] <- (1-(1-plogis(out1$sims.list$b0[m,i]+out1$sims.list$b2[m,i]))*(1-plogis(out1$sims.list$b0[m,i]+out1$sims.list$b1[m,i]))*(1-plogis(out1$sims.list$b0[m,i]))) #complet
+    
+    proba_meth_sp1[m,3,i] <- (1-(1-plogis(out1$sims.list$b0[m,i]+out1$sims.list$b1[m,i]))^2*(1-plogis(out1$sims.list$b0[m,i]))^2) #sans fauche        
+    proba_meth_sp1[m,4,i] <- (1-(1-plogis(out1$sims.list$b0[m,i]+out1$sims.list$b2[m,i]))^2*(1-plogis(out1$sims.list$b0[m,i]+out1$sims.list$b1[m,i]))^2*(1-plogis(out1$sims.list$b0[m,i]))^2) #complet
+    
+    proba_meth_sp1[m,5,i] <- (1-(1-plogis(out1$sims.list$b0[m,i]+out1$sims.list$b1[m,i]))^3*(1-plogis(out1$sims.list$b0[m,i]))^3) #sans fauche        
+    proba_meth_sp1[m,6,i] <- (1-(1-plogis(out1$sims.list$b0[m,i]+out1$sims.list$b2[m,i]))^3*(1-plogis(out1$sims.list$b0[m,i]+out1$sims.list$b1[m,i]))^3*(1-plogis(out1$sims.list$b0[m,i]))^3) #complet
+    
+    proba_meth_sp1[m,7,i] <- (1-(1-plogis(out1$sims.list$b0[m,i]+out1$sims.list$b1[m,i]))^4*(1-plogis(out1$sims.list$b0[m,i]))^4) #sans fauche        
+    proba_meth_sp1[m,8,i] <- (1-(1-plogis(out1$sims.list$b0[m,i]+out1$sims.list$b2[m,i]))^4*(1-plogis(out1$sims.list$b0[m,i]+out1$sims.list$b1[m,i]))^4*(1-plogis(out1$sims.list$b0[m,i]))^4) #complet
+    
+    proba_meth_sp1[m,9,i] <- (1-(1-plogis(out1$sims.list$b0[m,i]+out1$sims.list$b1[m,i]))^5*(1-plogis(out1$sims.list$b0[m,i]))^5) #sans fauche        
+    proba_meth_sp1[m,10,i] <- (1-(1-plogis(out1$sims.list$b0[m,i]+out1$sims.list$b2[m,i]))^5*(1-plogis(out1$sims.list$b0[m,i]+out1$sims.list$b1[m,i]))^5*(1-plogis(out1$sims.list$b0[m,i]))^5) #complet
+
+  }
+  
+  for (m in 1:dim(proba_meth_sp2)[1]){
+    proba_meth_sp2[m,1,i] <- (1-(1-plogis(out2$sims.list$b0[m,i]+out2$sims.list$b1[m,i]))*(1-plogis(out2$sims.list$b0[m,i]))) #sans fauche        
+    proba_meth_sp2[m,2,i] <- (1-(1-plogis(out2$sims.list$b0[m,i]+out2$sims.list$b2[m,i]))*(1-plogis(out2$sims.list$b0[m,i]+out2$sims.list$b1[m,i]))*(1-plogis(out2$sims.list$b0[m,i]))) #complet
+    
+    proba_meth_sp2[m,3,i] <- (1-(1-plogis(out2$sims.list$b0[m,i]+out2$sims.list$b1[m,i]))^2*(1-plogis(out2$sims.list$b0[m,i]))^2) #sans fauche        
+    proba_meth_sp2[m,4,i] <- (1-(1-plogis(out2$sims.list$b0[m,i]+out2$sims.list$b2[m,i]))^2*(1-plogis(out2$sims.list$b0[m,i]+out2$sims.list$b1[m,i]))^2*(1-plogis(out2$sims.list$b0[m,i]))^2) #complet
+    
+    proba_meth_sp2[m,5,i] <- (1-(1-plogis(out2$sims.list$b0[m,i]+out2$sims.list$b1[m,i]))^3*(1-plogis(out2$sims.list$b0[m,i]))^3) #sans fauche        
+    proba_meth_sp2[m,6,i] <- (1-(1-plogis(out2$sims.list$b0[m,i]+out2$sims.list$b2[m,i]))^3*(1-plogis(out2$sims.list$b0[m,i]+out2$sims.list$b1[m,i]))^3*(1-plogis(out2$sims.list$b0[m,i]))^3) #complet
+    
+    proba_meth_sp2[m,7,i] <- (1-(1-plogis(out2$sims.list$b0[m,i]+out2$sims.list$b1[m,i]))^4*(1-plogis(out2$sims.list$b0[m,i]))^4) #sans fauche        
+    proba_meth_sp2[m,8,i] <- (1-(1-plogis(out2$sims.list$b0[m,i]+out2$sims.list$b2[m,i]))^4*(1-plogis(out2$sims.list$b0[m,i]+out2$sims.list$b1[m,i]))^4*(1-plogis(out2$sims.list$b0[m,i]))^4) #complet
+    
+    proba_meth_sp2[m,9,i] <- (1-(1-plogis(out2$sims.list$b0[m,i]+out2$sims.list$b1[m,i]))^5*(1-plogis(out2$sims.list$b0[m,i]))^5) #sans fauche        
+    proba_meth_sp2[m,10,i] <- (1-(1-plogis(out2$sims.list$b0[m,i]+out2$sims.list$b2[m,i]))^5*(1-plogis(out2$sims.list$b0[m,i]+out2$sims.list$b1[m,i]))^5*(1-plogis(out2$sims.list$b0[m,i]))^5) #complet
+    
+  }
+  
+}
+
+probam_meth_sp1 <- apply(proba_meth_sp1, c(3,2), mean)
+probam_meth_sp2 <- apply(proba_meth_sp2, c(3,2), mean)
+
+probam_meth_sp1 %>%
+  as.data.frame() %>%
+  gather("Techniques","pR", 1:10) %>% 
+  mutate("Techniques"=as.factor(rep(rep(c("2","3"), each=n), 5))) %>%
+  mutate("Plot"=rep(c(1,2,3,4,5), each=n*2), "Method"="detection only") -> proba_det_meth_sp1
+
+probam_meth_sp2 %>%
+  as.data.frame() %>%
+  gather("Techniques","pR", 1:10) %>% 
+  mutate("Techniques"=as.factor(rep(rep(c("2","3"), each=n), 5))) %>%
+  mutate("Plot"=rep(c(1,2,3,4,5), each=n*2), "Method"="occupancy and detection") -> proba_det_meth_sp2
+
+rbind(proba_det_meth_sp1, proba_det_meth_sp2)  %>%
+  ggplot(aes(x=as.factor(Plot), y=pR, fill=Method)) +
+  geom_violin(position = position_dodge(0.8)) +
+  geom_sina(shape=4, size=0.8) +
+  #geom_jitter(position=position_jitterdodge(dodge.width = 0.8), size=1, shape=4) +
+  stat_summary(fun.data=data_summary, color="black", position = position_dodge(0.8)) +
+  ylab("Overall detection probability")+ 
+  ylim(c(-0,1)) +
+  xlab("Number of plots") +
+  theme_classic() +
+  facet_grid(.~Techniques, labeller = labeller(Techniques=c("2"="Without netting","3"="With netting"))) +
+  scale_fill_manual(name="Grass height effect on", values=c("grey40","grey")) +
+  theme(axis.title.x = element_text(size =14),
+        axis.title.y = element_text(size=14),
+        axis.text.x = element_text(size=12), 
+        axis.text.y = element_text(size=12),
+        legend.position = c(0.75,.025),
+        legend.justification = c(0.75,0),
+        legend.direction = "horizontal",
+        legend.title = element_text(size=12),
+        legend.text = element_text(size=12),
+        strip.text.x = element_text(size=12),
+        strip.background = element_rect(size=0))
+```
+
+# ESM 2
+
+```{r}
+print(out$model)
+```
+
+# ESM 3
+```{r}
+data.frame("taxon"=dimnames(X[,,1:n])[[3]], 
+           "occu"=plogis(out$mean$a0[1:n]), 
+           "occuI"=plogis(out$q2.5$a0[1:n]),
+           "occuS"=plogis(out$q97.5$a0[1:n]),
+           "pVu"=plogis(out$mean$b0[1:n]), 
+           "pVuI"=plogis(out$q2.5$b0[1:n]), 
+           "pVuS"=plogis(out$q97.5$b0[1:n]), 
+           "pE"=colMeans(plogis(out$sims.list$b0[,1:n]+out$sims.list$b1[,1:n])), 
+           t(apply(plogis(out$sims.list$b0[,1:n]+out$sims.list$b1[,1:n]),2,function(x)(quantile(x, c(0.025,0.975))))), 
+           "pF"=colMeans(plogis(out$sims.list$b0[,1:n]+out$sims.list$b2[,1:n])), 
+           t(apply(plogis(out$sims.list$b0[,1:n]+out$sims.list$b2[,1:n]),2,function(x)(quantile(x, c(0.025,0.975))))),
+           probam_meth_sp[,10],
+           probainf_meth_sp[,10],
+           probasup_meth_sp[,10],
+           probam_meth_sp[,9],
+           probainf_meth_sp[,9],
+           probasup_meth_sp[,9]) %>% 
+  mutate_at(-1,function(x)round(x,2)) -> tabS1
+
+data.frame("taxon"=dimnames(X[,,1:n])[[3]], 
+           (out$mean$a1[1:n]),
+           (out$q2.5$a1[1:n]),
+           (out$q97.5$a1[1:n]),
+           (out$mean$a2[1:n]),
+           (out$q2.5$a2[1:n]),
+           (out$q97.5$a2[1:n]),
+           (out$mean$b3[1:n]),
+           (out$q2.5$b3[1:n]),
+           (out$q97.5$b3[1:n])) %>% 
+  mutate_at(-1,function(x)round(x,2)) -> tabS2
+
+data.frame("Mean"=c(out$mean$mu.a0,out$mean$mu.a1,out$mean$mu.a2,
+             out$mean$mu.b0,out$mean$mu.b1,out$mean$mu.b2,out$mean$mu.b3),
+           "Q2.5"=c(out$q2.5$mu.a0,out$q2.5$mu.a1,out$q2.5$mu.a2,
+             out$q2.5$mu.b0,out$q2.5$mu.b1,out$q2.5$mu.b2,out$q2.5$mu.b3),
+           "Q97.5"=c(out$q97.5$mu.a0,out$q97.5$mu.a1,out$q97.5$mu.a2,
+             out$q97.5$mu.b0,out$q97.5$mu.b1,out$q97.5$mu.b2,out$q97.5$mu.b3)) %>% 
+  mutate_all(function(x)round(x,2)) -> tabS3
+
+write.csv(tabS1, file="tabS1.csv")
+write.csv(tabS2, file="tabS2.csv")
+write.csv(tabS3, file="tabS3.csv")
+```

@@ -1,0 +1,938 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.11.4)  4 NOV 2022 14:13
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**Rmd_Paper_MSOM.tex
+(./Rmd_Paper_MSOM.tex
+LaTeX2e <2022-11-01>
+L3 programming layer <2022-11-02> (/home/bmourgui/.TinyTeX/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2022/07/02 v1.4n Standard LaTeX document class
+(/home/bmourgui/.TinyTeX/texmf-dist/tex/latex/base/size12.clo
+File: size12.clo 2022/07/02 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count185
+\c@section=\count186
+\c@subsection=\count187
+\c@subsubsection=\count188
+\c@paragraph=\count189
+\c@subparagraph=\count190
+\c@figure=\count191
+\c@table=\count192
+\abovecaptionskip=\skip47
+\belowcaptionskip=\skip48
+\bibindent=\dimen140
+) (/home/bmourgui/.TinyTeX/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2022/04/08 v2.17n AMS math features
+\@mathmargin=\skip49
+For additional information on amsmath, use the `?' option.
+(/home/bmourgui/.TinyTeX/texmf-dist/tex/latex/amsmath/amstext.sty
+Package: amstext 2021/08/26 v2.01 AMS text
+(/home/bmourgui/.TinyTeX/texmf-dist/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks16
+\ex@=\dimen141
+)) (/home/bmourgui/.TinyTeX/texmf-dist/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen142
+) (/home/bmourgui/.TinyTeX/texmf-dist/tex/latex/amsmath/amsopn.sty
+Package: amsopn 2022/04/08 v2.04 operator names
+)
+\inf@bad=\count193
+LaTeX Info: Redefining \frac on input line 234.
+\uproot@=\count194
+\leftroot@=\count195
+LaTeX Info: Redefining \overline on input line 399.
+LaTeX Info: Redefining \colon on input line 410.
+\classnum@=\count196
+\DOTSCASE@=\count197
+LaTeX Info: Redefining \ldots on input line 496.
+LaTeX Info: Redefining \dots on input line 499.
+LaTeX Info: Redefining \cdots on input line 620.
+\Mathstrutbox@=\box51
+\strutbox@=\box52
+LaTeX Info: Redefining \big on input line 722.
+LaTeX Info: Redefining \Big on input line 723.
+LaTeX Info: Redefining \bigg on input line 724.
+LaTeX Info: Redefining \Bigg on input line 725.
+\big@size=\dimen143
+LaTeX Font Info:    Redeclaring font encoding OML on input line 743.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
+\macc@depth=\count198
+LaTeX Info: Redefining \bmod on input line 905.
+LaTeX Info: Redefining \pmod on input line 910.
+LaTeX Info: Redefining \smash on input line 940.
+LaTeX Info: Redefining \relbar on input line 970.
+LaTeX Info: Redefining \Relbar on input line 971.
+\c@MaxMatrixCols=\count199
+\dotsspace@=\muskip16
+\c@parentequation=\count266
+\dspbrk@lvl=\count267
+\tag@help=\toks17
+\row@=\count268
+\column@=\count269
+\maxfields@=\count270
+\andhelp@=\toks18
+\eqnshift@=\dimen144
+\alignsep@=\dimen145
+\tagshift@=\dimen146
+\tagwidth@=\dimen147
+\totwidth@=\dimen148
+\lineht@=\dimen149
+\@envbody=\toks19
+\multlinegap=\skip50
+\multlinetaggap=\skip51
+\mathdisplay@stack=\toks20
+LaTeX Info: Redefining \[ on input line 2953.
+LaTeX Info: Redefining \] on input line 2954.
+) (/home/bmourgui/.TinyTeX/texmf-dist/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+(/home/bmourgui/.TinyTeX/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+)) (/home/bmourgui/.TinyTeX/texmf-dist/tex/latex/psnfss/times.sty
+Package: times 2020/03/25 PSNFSS-v9.3 (SPQR) 
+) (/home/bmourgui/.TinyTeX/texmf-dist/tex/generic/iftex/iftex.sty
+Package: iftex 2022/02/03 v1.0f TeX engine tests
+) (/home/bmourgui/.TinyTeX/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
+LaTeX Font Info:    Trying to load font information for T1+ptm on input line 112.
+(/home/bmourgui/.TinyTeX/texmf-dist/tex/latex/psnfss/t1ptm.fd
+File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
+)) (/home/bmourgui/.TinyTeX/texmf-dist/tex/latex/base/inputenc.sty
+Package: inputenc 2021/02/14 v1.3d Input encoding file
+\inpenc@prehook=\toks21
+\inpenc@posthook=\toks22
+) (/home/bmourgui/.TinyTeX/texmf-dist/tex/latex/base/textcomp.sty
+Package: textcomp 2020/02/02 v2.0n Standard LaTeX package
+) (/home/bmourgui/.TinyTeX/texmf-dist/tex/latex/microtype/microtype.sty
+Package: microtype 2022/06/23 v3.0f Micro-typographical refinements (RS)
+(/home/bmourgui/.TinyTeX/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
+\KV@toks@=\toks23
+) (/home/bmourgui/.TinyTeX/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count271
+)
+\MT@toks=\toks24
+\MT@tempbox=\box53
+\MT@count=\count272
+LaTeX Info: Redefining \noprotrusionifhmode on input line 1045.
+LaTeX Info: Redefining \leftprotrusion on input line 1046.
+LaTeX Info: Redefining \rightprotrusion on input line 1056.
+LaTeX Info: Redefining \textls on input line 1234.
+\MT@outer@kern=\dimen150
+LaTeX Info: Redefining \textmicrotypecontext on input line 1858.
+\MT@listname@count=\count273
+(/home/bmourgui/.TinyTeX/texmf-dist/tex/latex/microtype/microtype-pdftex.def
+File: microtype-pdftex.def 2022/06/23 v3.0f Definitions specific to pdftex (RS)
+LaTeX Info: Redefining \lsstyle on input line 900.
+LaTeX Info: Redefining \lslig on input line 900.
+\MT@outer@space=\skip52
+)
+Package microtype Info: Loading configuration file microtype.cfg.
+(/home/bmourgui/.TinyTeX/texmf-dist/tex/latex/microtype/microtype.cfg
+File: microtype.cfg 2022/06/23 v3.0f microtype main configuration file (RS)
+)) (/home/bmourgui/.TinyTeX/texmf-dist/tex/latex/parskip/parskip.sty
+Package: parskip 2021-03-14 v2.0h non-zero parskip adjustments
+(/home/bmourgui/.TinyTeX/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
+(/home/bmourgui/.TinyTeX/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
+Package: ltxcmds 2020-05-10 v1.25 LaTeX kernel commands for general use (HO)
+) (/home/bmourgui/.TinyTeX/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty
+Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
+))) (/home/bmourgui/.TinyTeX/texmf-dist/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2022/06/12 v2.14 LaTeX color extensions (UK)
+(/home/bmourgui/.TinyTeX/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: pdftex.def on input line 227.
+(/home/bmourgui/.TinyTeX/texmf-dist/tex/latex/graphics-def/pdftex.def
+File: pdftex.def 2022/09/22 v1.2b Graphics/color driver for pdftex
+) (/home/bmourgui/.TinyTeX/texmf-dist/tex/latex/graphics/mathcolor.ltx)
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1353.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1357.
+Package xcolor Info: Model `RGB' extended on input line 1369.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1371.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1372.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1373.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1374.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1375.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1376.
+) (/home/bmourgui/.TinyTeX/texmf-dist/tex/latex/geometry/geometry.sty
+Package: geometry 2020/01/02 v5.9 Page Geometry
+(/home/bmourgui/.TinyTeX/texmf-dist/tex/generic/iftex/ifvtex.sty
+Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
+)
+\Gm@cnth=\count274
+\Gm@cntv=\count275
+\c@Gm@tempcnt=\count276
+\Gm@bindingoffset=\dimen151
+\Gm@wd@mp=\dimen152
+\Gm@odd@mp=\dimen153
+\Gm@even@mp=\dimen154
+\Gm@layoutwidth=\dimen155
+\Gm@layoutheight=\dimen156
+\Gm@layouthoffset=\dimen157
+\Gm@layoutvoffset=\dimen158
+\Gm@dimlist=\toks25
+) (/home/bmourgui/.TinyTeX/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
+Package: fancyvrb 2022/06/06 4.5 verbatim text (tvz,hv)
+\FV@CodeLineNo=\count277
+\FV@InFile=\read2
+\FV@TabBox=\box54
+\c@FancyVerbLine=\count278
+\FV@StepNumber=\count279
+\FV@OutFile=\write3
+) (/home/bmourgui/.TinyTeX/texmf-dist/tex/latex/framed/framed.sty
+Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
+\OuterFrameSep=\skip53
+\fb@frw=\dimen159
+\fb@frh=\dimen160
+\FrameRule=\dimen161
+\FrameSep=\dimen162
+) (/home/bmourgui/.TinyTeX/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
+(/home/bmourgui/.TinyTeX/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2022/03/10 v1.4e Standard LaTeX Graphics (DPC,SPQR)
+(/home/bmourgui/.TinyTeX/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2021/08/11 v1.11 sin cos tan (DPC)
+) (/home/bmourgui/.TinyTeX/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 107.
+)
+\Gin@req@height=\dimen163
+\Gin@req@width=\dimen164
+)
+\cslhangindent=\skip54
+\csllabelwidth=\skip55
+\cslentryspacingunit=\skip56
+(/home/bmourgui/.TinyTeX/texmf-dist/tex/latex/tools/calc.sty
+Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count280
+\calc@Bcount=\count281
+\calc@Adimen=\dimen165
+\calc@Bdimen=\dimen166
+\calc@Askip=\skip57
+\calc@Bskip=\skip58
+LaTeX Info: Redefining \setlength on input line 80.
+LaTeX Info: Redefining \addtolength on input line 81.
+\calc@Ccount=\count282
+\calc@Cskip=\skip59
+) (/home/bmourgui/.TinyTeX/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count283
+\float@exts=\toks26
+\float@box=\box55
+\@float@everytoks=\toks27
+\@floatcapt=\box56
+) (/home/bmourgui/.TinyTeX/texmf-dist/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2022-09-22 v7.00t Hypertext links for LaTeX
+(/home/bmourgui/.TinyTeX/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO)
+(/home/bmourgui/.TinyTeX/texmf-dist/tex/generic/infwarerr/infwarerr.sty
+Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
+)
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+) (/home/bmourgui/.TinyTeX/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
+Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
+) (/home/bmourgui/.TinyTeX/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
+) (/home/bmourgui/.TinyTeX/texmf-dist/tex/latex/hycolor/hycolor.sty
+Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
+) (/home/bmourgui/.TinyTeX/texmf-dist/tex/latex/letltxmacro/letltxmacro.sty
+Package: letltxmacro 2019/12/03 v1.6 Let assignment for LaTeX macros (HO)
+) (/home/bmourgui/.TinyTeX/texmf-dist/tex/latex/auxhook/auxhook.sty
+Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
+) (/home/bmourgui/.TinyTeX/texmf-dist/tex/latex/hyperref/nameref.sty
+Package: nameref 2022-05-17 v2.50 Cross-referencing by name of section
+(/home/bmourgui/.TinyTeX/texmf-dist/tex/latex/refcount/refcount.sty
+Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
+) (/home/bmourgui/.TinyTeX/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
+Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
+)
+\c@section@level=\count284
+)
+\@linkdim=\dimen167
+\Hy@linkcounter=\count285
+\Hy@pagecounter=\count286
+(/home/bmourgui/.TinyTeX/texmf-dist/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2022-09-22 v7.00t Hyperref: PDFDocEncoding definition (HO)
+Now handling font encoding PD1 ...
+... no UTF-8 mapping file for font encoding PD1
+) (/home/bmourgui/.TinyTeX/texmf-dist/tex/generic/intcalc/intcalc.sty
+Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
+) (/home/bmourgui/.TinyTeX/texmf-dist/tex/generic/etexcmds/etexcmds.sty
+Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
+)
+\Hy@SavedSpaceFactor=\count287
+(/home/bmourgui/.TinyTeX/texmf-dist/tex/latex/hyperref/puenc.def
+File: puenc.def 2022-09-22 v7.00t Hyperref: PDF Unicode definition (HO)
+Now handling font encoding PU ...
+... no UTF-8 mapping file for font encoding PU
+)
+Package hyperref Info: Option `unicode' set `true' on input line 4045.
+Package hyperref Info: Hyper figures OFF on input line 4162.
+Package hyperref Info: Link nesting OFF on input line 4167.
+Package hyperref Info: Hyper index ON on input line 4170.
+Package hyperref Info: Plain pages OFF on input line 4177.
+Package hyperref Info: Backreferencing OFF on input line 4182.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4410.
+\c@Hy@tempcnt=\count288
+(/home/bmourgui/.TinyTeX/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip17
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+LaTeX Info: Redefining \url on input line 4748.
+\XeTeXLinkMargin=\dimen168
+(/home/bmourgui/.TinyTeX/texmf-dist/tex/generic/bitset/bitset.sty
+Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
+(/home/bmourgui/.TinyTeX/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
+Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO)
+))
+\Fld@menulength=\count289
+\Field@Width=\dimen169
+\Fld@charsize=\dimen170
+Package hyperref Info: Hyper figures OFF on input line 6027.
+Package hyperref Info: Link nesting OFF on input line 6032.
+Package hyperref Info: Hyper index ON on input line 6035.
+Package hyperref Info: backreferencing OFF on input line 6042.
+Package hyperref Info: Link coloring OFF on input line 6047.
+Package hyperref Info: Link coloring with OCG OFF on input line 6052.
+Package hyperref Info: PDF/A mode OFF on input line 6057.
+(/home/bmourgui/.TinyTeX/texmf-dist/tex/latex/base/atbegshi-ltx.sty
+Package: atbegshi-ltx 2021/01/10 v1.0c Emulation of the original atbegshi
+package with kernel methods
+)
+\Hy@abspage=\count290
+\c@Item=\count291
+\c@Hfootnote=\count292
+)
+Package hyperref Info: Driver (autodetected): hpdftex.
+(/home/bmourgui/.TinyTeX/texmf-dist/tex/latex/hyperref/hpdftex.def
+File: hpdftex.def 2022-09-22 v7.00t Hyperref driver for pdfTeX
+(/home/bmourgui/.TinyTeX/texmf-dist/tex/latex/base/atveryend-ltx.sty
+Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atveryend package
+with kernel methods
+)
+\Fld@listcount=\count293
+\c@bookmark@seq@number=\count294
+(/home/bmourgui/.TinyTeX/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+Package: rerunfilecheck 2022-07-10 v1.10 Rerun checks for auxiliary files (HO)
+(/home/bmourgui/.TinyTeX/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
+Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
+)
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 285.
+)
+\Hy@SectionHShift=\skip60
+) (/home/bmourgui/.TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+File: l3backend-pdftex.def 2022-10-26 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count295
+\l__pdf_internal_box=\box57
+) (./Rmd_Paper_MSOM.aux
+
+LaTeX Warning: Label `cova_effect' multiply defined.
+
+)
+\openout1 = `Rmd_Paper_MSOM.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 136.
+LaTeX Font Info:    ... okay on input line 136.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 136.
+LaTeX Font Info:    ... okay on input line 136.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 136.
+LaTeX Font Info:    ... okay on input line 136.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 136.
+LaTeX Font Info:    ... okay on input line 136.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 136.
+LaTeX Font Info:    ... okay on input line 136.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 136.
+LaTeX Font Info:    ... okay on input line 136.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 136.
+LaTeX Font Info:    ... okay on input line 136.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 136.
+LaTeX Font Info:    ... okay on input line 136.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 136.
+LaTeX Font Info:    ... okay on input line 136.
+LaTeX Info: Redefining \microtypecontext on input line 136.
+Package microtype Info: Applying patch `item' on input line 136.
+Package microtype Info: Applying patch `toc' on input line 136.
+Package microtype Info: Applying patch `eqnum' on input line 136.
+Package microtype Info: Applying patch `footnote' on input line 136.
+Package microtype Info: Generating PDF output.
+Package microtype Info: Character protrusion enabled (level 2).
+Package microtype Info: Using protrusion set `basicmath'.
+Package microtype Info: Automatic font expansion enabled (level 2),
+(microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
+Package microtype Info: Using default expansion set `alltext-nott'.
+LaTeX Info: Redefining \showhyphens on input line 136.
+Package microtype Info: No adjustment of tracking.
+Package microtype Info: No adjustment of interword spacing.
+Package microtype Info: No adjustment of character kerning.
+(/home/bmourgui/.TinyTeX/texmf-dist/tex/latex/microtype/mt-ptm.cfg
+File: mt-ptm.cfg 2006/04/20 v1.7 microtype config. file: Times (RS)
+) (/home/bmourgui/.TinyTeX/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
+(/home/bmourgui/.TinyTeX/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
+))
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: <default>
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(72.26999pt, 469.75502pt, 72.26999pt)
+* v-part:(T,H,B)=(72.26999pt, 650.43001pt, 72.26999pt)
+* \paperwidth=614.295pt
+* \paperheight=794.96999pt
+* \textwidth=469.75502pt
+* \textheight=650.43001pt
+* \oddsidemargin=0.0pt
+* \evensidemargin=0.0pt
+* \topmargin=-37.0pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=12.0pt
+* \footskip=30.0pt
+* \marginparwidth=44.0pt
+* \marginparsep=10.0pt
+* \columnsep=10.0pt
+* \skip\footins=10.8pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+Package hyperref Info: Link coloring OFF on input line 136.
+(./Rmd_Paper_MSOM.out) (./Rmd_Paper_MSOM.out)
+\@outlinefile=\write4
+\openout4 = `Rmd_Paper_MSOM.out'.
+
+(/home/bmourgui/.TinyTeX/texmf-dist/tex/latex/microtype/mt-cmr.cfg
+File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman (RS)
+)
+LaTeX Font Info:    Trying to load font information for U+msa on input line 138.
+(/home/bmourgui/.TinyTeX/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+) (/home/bmourgui/.TinyTeX/texmf-dist/tex/latex/microtype/mt-msa.cfg
+File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 138.
+(/home/bmourgui/.TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+) (/home/bmourgui/.TinyTeX/texmf-dist/tex/latex/microtype/mt-msb.cfg
+File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
+) [1
+
+{/home/bmourgui/.TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2] [3]
+LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 342.
+(/home/bmourgui/.TinyTeX/texmf-dist/tex/latex/psnfss/ts1ptm.fd
+File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
+) [4]
+Underfull \hbox (badness 10000) in paragraph at lines 399--404
+
+ []
+
+[5]
+
+LaTeX Warning: Reference `eq:1' on page 6 undefined on input line 474.
+
+[6] [7]
+<Rmd_Paper_MSOM_files/figure-latex/unnamed-chunk-2-1.pdf, id=142, 459.7175pt x 563.10374pt>
+File: Rmd_Paper_MSOM_files/figure-latex/unnamed-chunk-2-1.pdf Graphic file (type pdf)
+<use Rmd_Paper_MSOM_files/figure-latex/unnamed-chunk-2-1.pdf>
+Package pdftex.def Info: Rmd_Paper_MSOM_files/figure-latex/unnamed-chunk-2-1.pdf  used on input line 593.
+(pdftex.def)             Requested size: 459.74442pt x 563.13673pt.
+[8]
+<Rmd_Paper_MSOM_files/figure-latex/unnamed-chunk-5-1.pdf, id=149, 459.7175pt x 315.1775pt>
+File: Rmd_Paper_MSOM_files/figure-latex/unnamed-chunk-5-1.pdf Graphic file (type pdf)
+<use Rmd_Paper_MSOM_files/figure-latex/unnamed-chunk-5-1.pdf>
+Package pdftex.def Info: Rmd_Paper_MSOM_files/figure-latex/unnamed-chunk-5-1.pdf  used on input line 606.
+(pdftex.def)             Requested size: 459.74442pt x 315.19595pt.
+[9 <./Rmd_Paper_MSOM_files/figure-latex/unnamed-chunk-2-1.pdf>]
+LaTeX Font Info:    Trying to load font information for T1+pcr on input line 627.
+(/home/bmourgui/.TinyTeX/texmf-dist/tex/latex/psnfss/t1pcr.fd
+File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
+) [10 <./Rmd_Paper_MSOM_files/figure-latex/unnamed-chunk-5-1.pdf>]
+<Rmd_Paper_MSOM_files/figure-latex/unnamed-chunk-9-1.pdf, id=182, 459.7175pt x 315.1775pt>
+File: Rmd_Paper_MSOM_files/figure-latex/unnamed-chunk-9-1.pdf Graphic file (type pdf)
+<use Rmd_Paper_MSOM_files/figure-latex/unnamed-chunk-9-1.pdf>
+Package pdftex.def Info: Rmd_Paper_MSOM_files/figure-latex/unnamed-chunk-9-1.pdf  used on input line 649.
+(pdftex.def)             Requested size: 459.74442pt x 315.19595pt.
+<Rmd_Paper_MSOM_files/figure-latex/unnamed-chunk-10-1.pdf, id=183, 459.7175pt x 315.1775pt>
+File: Rmd_Paper_MSOM_files/figure-latex/unnamed-chunk-10-1.pdf Graphic file (type pdf)
+<use Rmd_Paper_MSOM_files/figure-latex/unnamed-chunk-10-1.pdf>
+Package pdftex.def Info: Rmd_Paper_MSOM_files/figure-latex/unnamed-chunk-10-1.pdf  used on input line 679.
+(pdftex.def)             Requested size: 459.74442pt x 315.19595pt.
+[11 <./Rmd_Paper_MSOM_files/figure-latex/unnamed-chunk-9-1.pdf>] [12 <./Rmd_Paper_MSOM_files/figure-latex/unnamed-chunk-10-1.pdf>] [13] [14] [15] [16] [17] [18] [19]
+<Rmd_Paper_MSOM_files/figure-latex/unnamed-chunk-12-1.pdf, id=436, 459.7175pt x 563.10374pt>
+File: Rmd_Paper_MSOM_files/figure-latex/unnamed-chunk-12-1.pdf Graphic file (type pdf)
+<use Rmd_Paper_MSOM_files/figure-latex/unnamed-chunk-12-1.pdf>
+Package pdftex.def Info: Rmd_Paper_MSOM_files/figure-latex/unnamed-chunk-12-1.pdf  used on input line 1426.
+(pdftex.def)             Requested size: 459.74442pt x 563.13673pt.
+[20]
+Overfull \vbox (12.30463pt too high) has occurred while \output is active []
+
+[21 <./Rmd_Paper_MSOM_files/figure-latex/unnamed-chunk-12-1.pdf>]
+<Rmd_Paper_MSOM_files/figure-latex/unnamed-chunk-13-1.pdf, id=464, 439.6425pt x 500.87125pt>
+File: Rmd_Paper_MSOM_files/figure-latex/unnamed-chunk-13-1.pdf Graphic file (type pdf)
+<use Rmd_Paper_MSOM_files/figure-latex/unnamed-chunk-13-1.pdf>
+Package pdftex.def Info: Rmd_Paper_MSOM_files/figure-latex/unnamed-chunk-13-1.pdf  used on input line 1435.
+(pdftex.def)             Requested size: 439.65483pt x 500.88528pt.
+<Rmd_Paper_MSOM_files/figure-latex/unnamed-chunk-14-1.pdf, id=465, 459.7175pt x 568.1225pt>
+File: Rmd_Paper_MSOM_files/figure-latex/unnamed-chunk-14-1.pdf Graphic file (type pdf)
+<use Rmd_Paper_MSOM_files/figure-latex/unnamed-chunk-14-1.pdf>
+Package pdftex.def Info: Rmd_Paper_MSOM_files/figure-latex/unnamed-chunk-14-1.pdf  used on input line 1444.
+(pdftex.def)             Requested size: 459.74442pt x 568.15576pt.
+[22 <./Rmd_Paper_MSOM_files/figure-latex/unnamed-chunk-13-1.pdf>]
+<Rmd_Paper_MSOM_files/figure-latex/unnamed-chunk-15-1.pdf, id=480, 459.7175pt x 568.1225pt>
+File: Rmd_Paper_MSOM_files/figure-latex/unnamed-chunk-15-1.pdf Graphic file (type pdf)
+<use Rmd_Paper_MSOM_files/figure-latex/unnamed-chunk-15-1.pdf>
+Package pdftex.def Info: Rmd_Paper_MSOM_files/figure-latex/unnamed-chunk-15-1.pdf  used on input line 1453.
+(pdftex.def)             Requested size: 459.74442pt x 568.15576pt.
+[23 <./Rmd_Paper_MSOM_files/figure-latex/unnamed-chunk-14-1.pdf>] [24 <./Rmd_Paper_MSOM_files/figure-latex/unnamed-chunk-15-1.pdf>]
+Overfull \hbox (41.44476pt too wide) in paragraph at lines 1805--1805
+[]\T1/pcr/m/n/12 ##     #Define prior distributions for community-level model parameters[] 
+ []
+
+
+Overfull \hbox (149.44472pt too wide) in paragraph at lines 1805--1805
+[]\T1/pcr/m/n/12 ##     omega ~ dunif(0,1)                            #probability of species inclusion[] 
+ []
+
+
+Overfull \hbox (156.64471pt too wide) in paragraph at lines 1805--1805
+[]\T1/pcr/m/n/12 ##     a0.mean ~ dunif(0,1)                          #species level effect on occupancy[] 
+ []
+
+
+Overfull \hbox (293.44466pt too wide) in paragraph at lines 1805--1805
+[]\T1/pcr/m/n/12 ##     mu.a0 <- log(a0.mean) - log(1-a0.mean)        #species level effect on occupancy on the logit scale[] 
+ []
+
+
+Overfull \hbox (192.6447pt too wide) in paragraph at lines 1805--1805
+[]\T1/pcr/m/n/12 ##     mu.a1 ~ dnorm(0, 0.001)                        #site covariable 1 effect on occupancy[] 
+ []
+
+
+Overfull \hbox (264.64467pt too wide) in paragraph at lines 1805--1805
+[]\T1/pcr/m/n/12 ##     tau.a0 ~ dgamma(0.1,0.1)                      #variability of species level effect on occupancy[] 
+ []
+
+
+Overfull \hbox (293.44466pt too wide) in paragraph at lines 1805--1805
+[]\T1/pcr/m/n/12 ##     tau.a1 ~ dgamma(0.1,0.1)                      #variability of site covariable 1 effect on occupancy[] 
+ []
+
+
+Overfull \hbox (106.24474pt too wide) in paragraph at lines 1805--1805
+[]\T1/pcr/m/n/12 ##     #Create priors for species i from the community level prior distributions[] 
+ []
+
+
+Overfull \hbox (315.04465pt too wide) in paragraph at lines 1805--1805
+[]\T1/pcr/m/n/12 ##     w[i] ~ dbern(omega)                       #binary indicator: species i belongs or not to the community[] 
+ []
+
+
+Overfull \hbox (221.44469pt too wide) in paragraph at lines 1805--1805
+[]\T1/pcr/m/n/12 ##     a0[i] ~ dnorm(mu.a0, tau.a0)                #species effect on occupancy of the species i[] 
+ []
+
+[25]
+Overfull \hbox (286.24466pt too wide) in paragraph at lines 1805--1805
+[]\T1/pcr/m/n/12 ##     a1[i] ~ dnorm(mu.a1, tau.a1)               #site covariable 1 effect on occupancy of the species i[] 
+ []
+
+
+Overfull \hbox (315.04465pt too wide) in paragraph at lines 1805--1805
+[]\T1/pcr/m/n/12 ##     b0[i] ~ dnorm(mu.b0, tau.b0)          #parameters for detection probabilities depend on mobility group[] 
+ []
+
+
+Overfull \hbox (84.64474pt too wide) in paragraph at lines 1805--1805
+[]\T1/pcr/m/n/12 ##     #Create a loop to estimate the Z matrix (true occurrence for species i[] 
+ []
+
+
+Overfull \hbox (99.04474pt too wide) in paragraph at lines 1805--1805
+[]\T1/pcr/m/n/12 ##             a1[i]*covSite1[j] + a2[i]*pow(covSite1[j],2) #+ #altitude effect[] 
+ []
+
+
+Overfull \hbox (387.04462pt too wide) in paragraph at lines 1805--1805
+[]\T1/pcr/m/n/12 ##     mu.psi[j,i] <- psi[j,i]*w[i]          #site j could be occupied by species i only if it belongs to the community[] 
+ []
+
+
+Overfull \hbox (55.84476pt too wide) in paragraph at lines 1805--1805
+[]\T1/pcr/m/n/12 ##     #if species i belongs to the community: mu.psi=psi, else: mu.psi=0[] 
+ []
+
+
+Overfull \hbox (243.04468pt too wide) in paragraph at lines 1805--1805
+[]\T1/pcr/m/n/12 ##     Z[j,i] ~ dbern(mu.psi[j,i])           #binary indicator: species i presents or not in site j[] 
+ []
+
+
+Overfull \hbox (70.24475pt too wide) in paragraph at lines 1805--1805
+[]\T1/pcr/m/n/12 ##     #Create a loop to estimate detection for species i at point j during[] 
+ []
+
+
+Overfull \hbox (19.84477pt too wide) in paragraph at lines 1805--1805
+[]\T1/pcr/m/n/12 ##                         b2[i]*covDetection2[j,k] + #sweep netting[] 
+ []
+
+
+Overfull \hbox (221.44469pt too wide) in paragraph at lines 1805--1805
+[]\T1/pcr/m/n/12 ##                         b3[i]*covDetection0[j,k]*covDetection3[j,k] #+ #sighting*grass height[] 
+ []
+
+
+Overfull \hbox (199.8447pt too wide) in paragraph at lines 1805--1805
+[]\T1/pcr/m/n/12 ##                         #b4[i]*covDetection2[j,k]*covDetection3[j,k] #netting*grass height[] 
+ []
+
+
+Overfull \hbox (408.6446pt too wide) in paragraph at lines 1805--1805
+[]\T1/pcr/m/n/12 ##     mu.p[j,k,i] <- p[j,k,i]*Z[j,i]    #species i could be detected in site j during survey k only if site j is occupied[] 
+ []
+
+
+Overfull \hbox (394.24461pt too wide) in paragraph at lines 1805--1805
+[]\T1/pcr/m/n/12 ##     X[j,k,i] ~ dbern(mu.p[j,k,i])     #binary indicator observed: species i detected or not in site j during survey k[] 
+ []
+
+
+Overfull \hbox (5.44478pt too wide) in paragraph at lines 1805--1805
+[]\T1/pcr/m/n/12 ##     #Create simulated dataset to calculate the Bayesian p-value[] 
+ []
+
+[26]
+Overfull \hbox (77.44475pt too wide) in paragraph at lines 1805--1805
+[]\T1/pcr/m/n/12 ##     #Sum all species observed (n) and unobserved species (n0) to find the[] 
+ []
+
+
+Overfull \hbox (55.84476pt too wide) in paragraph at lines 1805--1805
+[]\T1/pcr/m/n/12 ##     #Create a loop to determine point level richness estimates for the[] 
+ []
+
+
+Overfull \hbox (135.04472pt too wide) in paragraph at lines 1805--1805
+[]\T1/pcr/m/n/12 ##  J K X covDetection0 covDetection1 covDetection2 covDetection3 covSite1 n nzeroes[] 
+ []
+
+
+Overfull \hbox (41.44476pt too wide) in paragraph at lines 1805--1805
+[]\T1/pcr/m/n/12 ##     #Define prior distributions for community-level model parameters[] 
+ []
+
+
+Overfull \hbox (149.44472pt too wide) in paragraph at lines 1805--1805
+[]\T1/pcr/m/n/12 ##     omega ~ dunif(0,1)                            #probability of species inclusion[] 
+ []
+
+
+Overfull \hbox (156.64471pt too wide) in paragraph at lines 1805--1805
+[]\T1/pcr/m/n/12 ##     a0.mean ~ dunif(0,1)                          #species level effect on occupancy[] 
+ []
+
+
+Overfull \hbox (293.44466pt too wide) in paragraph at lines 1805--1805
+[]\T1/pcr/m/n/12 ##     mu.a0 <- log(a0.mean) - log(1-a0.mean)        #species level effect on occupancy on the logit scale[] 
+ []
+
+
+Overfull \hbox (192.6447pt too wide) in paragraph at lines 1805--1805
+[]\T1/pcr/m/n/12 ##     mu.a1 ~ dnorm(0, 0.001)                        #site covariable 1 effect on occupancy[] 
+ []
+
+
+Overfull \hbox (264.64467pt too wide) in paragraph at lines 1805--1805
+[]\T1/pcr/m/n/12 ##     tau.a0 ~ dgamma(0.1,0.1)                      #variability of species level effect on occupancy[] 
+ []
+
+
+Overfull \hbox (293.44466pt too wide) in paragraph at lines 1805--1805
+[]\T1/pcr/m/n/12 ##     tau.a1 ~ dgamma(0.1,0.1)                      #variability of site covariable 1 effect on occupancy[] 
+ []
+
+[27]
+Overfull \hbox (106.24474pt too wide) in paragraph at lines 1805--1805
+[]\T1/pcr/m/n/12 ##     #Create priors for species i from the community level prior distributions[] 
+ []
+
+
+Overfull \hbox (315.04465pt too wide) in paragraph at lines 1805--1805
+[]\T1/pcr/m/n/12 ##     w[i] ~ dbern(omega)                       #binary indicator: species i belongs or not to the community[] 
+ []
+
+
+Overfull \hbox (221.44469pt too wide) in paragraph at lines 1805--1805
+[]\T1/pcr/m/n/12 ##     a0[i] ~ dnorm(mu.a0, tau.a0)                #species effect on occupancy of the species i[] 
+ []
+
+
+Overfull \hbox (286.24466pt too wide) in paragraph at lines 1805--1805
+[]\T1/pcr/m/n/12 ##     a1[i] ~ dnorm(mu.a1, tau.a1)               #site covariable 1 effect on occupancy of the species i[] 
+ []
+
+
+Overfull \hbox (315.04465pt too wide) in paragraph at lines 1805--1805
+[]\T1/pcr/m/n/12 ##     b0[i] ~ dnorm(mu.b0, tau.b0)          #parameters for detection probabilities depend on mobility group[] 
+ []
+
+
+Overfull \hbox (84.64474pt too wide) in paragraph at lines 1805--1805
+[]\T1/pcr/m/n/12 ##     #Create a loop to estimate the Z matrix (true occurrence for species i[] 
+ []
+
+
+Overfull \hbox (99.04474pt too wide) in paragraph at lines 1805--1805
+[]\T1/pcr/m/n/12 ##             a1[i]*covSite1[j] + a2[i]*pow(covSite1[j],2) #+ #altitude effect[] 
+ []
+
+
+Overfull \hbox (387.04462pt too wide) in paragraph at lines 1805--1805
+[]\T1/pcr/m/n/12 ##     mu.psi[j,i] <- psi[j,i]*w[i]          #site j could be occupied by species i only if it belongs to the community[] 
+ []
+
+
+Overfull \hbox (55.84476pt too wide) in paragraph at lines 1805--1805
+[]\T1/pcr/m/n/12 ##     #if species i belongs to the community: mu.psi=psi, else: mu.psi=0[] 
+ []
+
+
+Overfull \hbox (243.04468pt too wide) in paragraph at lines 1805--1805
+[]\T1/pcr/m/n/12 ##     Z[j,i] ~ dbern(mu.psi[j,i])           #binary indicator: species i presents or not in site j[] 
+ []
+
+
+Overfull \hbox (70.24475pt too wide) in paragraph at lines 1805--1805
+[]\T1/pcr/m/n/12 ##     #Create a loop to estimate detection for species i at point j during[] 
+ []
+
+[28]
+Overfull \hbox (19.84477pt too wide) in paragraph at lines 1805--1805
+[]\T1/pcr/m/n/12 ##                         b2[i]*covDetection2[j,k] + #sweep netting[] 
+ []
+
+
+Overfull \hbox (221.44469pt too wide) in paragraph at lines 1805--1805
+[]\T1/pcr/m/n/12 ##                         b3[i]*covDetection0[j,k]*covDetection3[j,k] #+ #sighting*grass height[] 
+ []
+
+
+Overfull \hbox (199.8447pt too wide) in paragraph at lines 1805--1805
+[]\T1/pcr/m/n/12 ##                         #b4[i]*covDetection2[j,k]*covDetection3[j,k] #netting*grass height[] 
+ []
+
+
+Overfull \hbox (408.6446pt too wide) in paragraph at lines 1805--1805
+[]\T1/pcr/m/n/12 ##     mu.p[j,k,i] <- p[j,k,i]*Z[j,i]    #species i could be detected in site j during survey k only if site j is occupied[] 
+ []
+
+
+Overfull \hbox (394.24461pt too wide) in paragraph at lines 1805--1805
+[]\T1/pcr/m/n/12 ##     X[j,k,i] ~ dbern(mu.p[j,k,i])     #binary indicator observed: species i detected or not in site j during survey k[] 
+ []
+
+
+Overfull \hbox (5.44478pt too wide) in paragraph at lines 1805--1805
+[]\T1/pcr/m/n/12 ##     #Create simulated dataset to calculate the Bayesian p-value[] 
+ []
+
+
+Overfull \hbox (77.44475pt too wide) in paragraph at lines 1805--1805
+[]\T1/pcr/m/n/12 ##     #Sum all species observed (n) and unobserved species (n0) to find the[] 
+ []
+
+
+Overfull \hbox (55.84476pt too wide) in paragraph at lines 1805--1805
+[]\T1/pcr/m/n/12 ##     #Create a loop to determine point level richness estimates for the[] 
+ []
+
+[29]
+Overfull \hbox (135.04472pt too wide) in paragraph at lines 1805--1805
+[]\T1/pcr/m/n/12 ##  J K X covDetection0 covDetection1 covDetection2 covDetection3 covSite1 n nzeroes[] 
+ []
+
+
+Overfull \hbox (41.44476pt too wide) in paragraph at lines 1805--1805
+[]\T1/pcr/m/n/12 ##     #Define prior distributions for community-level model parameters[] 
+ []
+
+
+Overfull \hbox (149.44472pt too wide) in paragraph at lines 1805--1805
+[]\T1/pcr/m/n/12 ##     omega ~ dunif(0,1)                            #probability of species inclusion[] 
+ []
+
+
+Overfull \hbox (156.64471pt too wide) in paragraph at lines 1805--1805
+[]\T1/pcr/m/n/12 ##     a0.mean ~ dunif(0,1)                          #species level effect on occupancy[] 
+ []
+
+
+Overfull \hbox (293.44466pt too wide) in paragraph at lines 1805--1805
+[]\T1/pcr/m/n/12 ##     mu.a0 <- log(a0.mean) - log(1-a0.mean)        #species level effect on occupancy on the logit scale[] 
+ []
+
+
+Overfull \hbox (192.6447pt too wide) in paragraph at lines 1805--1805
+[]\T1/pcr/m/n/12 ##     mu.a1 ~ dnorm(0, 0.001)                        #site covariable 1 effect on occupancy[] 
+ []
+
+
+Overfull \hbox (264.64467pt too wide) in paragraph at lines 1805--1805
+[]\T1/pcr/m/n/12 ##     tau.a0 ~ dgamma(0.1,0.1)                      #variability of species level effect on occupancy[] 
+ []
+
+
+Overfull \hbox (293.44466pt too wide) in paragraph at lines 1805--1805
+[]\T1/pcr/m/n/12 ##     tau.a1 ~ dgamma(0.1,0.1)                      #variability of site covariable 1 effect on occupancy[] 
+ []
+
+
+Overfull \hbox (106.24474pt too wide) in paragraph at lines 1805--1805
+[]\T1/pcr/m/n/12 ##     #Create priors for species i from the community level prior distributions[] 
+ []
+
+
+Overfull \hbox (315.04465pt too wide) in paragraph at lines 1805--1805
+[]\T1/pcr/m/n/12 ##     w[i] ~ dbern(omega)                       #binary indicator: species i belongs or not to the community[] 
+ []
+
+
+Overfull \hbox (221.44469pt too wide) in paragraph at lines 1805--1805
+[]\T1/pcr/m/n/12 ##     a0[i] ~ dnorm(mu.a0, tau.a0)                #species effect on occupancy of the species i[] 
+ []
+
+
+Overfull \hbox (286.24466pt too wide) in paragraph at lines 1805--1805
+[]\T1/pcr/m/n/12 ##     a1[i] ~ dnorm(mu.a1, tau.a1)               #site covariable 1 effect on occupancy of the species i[] 
+ []
+
+[30]
+Overfull \hbox (315.04465pt too wide) in paragraph at lines 1805--1805
+[]\T1/pcr/m/n/12 ##     b0[i] ~ dnorm(mu.b0, tau.b0)          #parameters for detection probabilities depend on mobility group[] 
+ []
+
+
+Overfull \hbox (84.64474pt too wide) in paragraph at lines 1805--1805
+[]\T1/pcr/m/n/12 ##     #Create a loop to estimate the Z matrix (true occurrence for species i[] 
+ []
+
+
+Overfull \hbox (99.04474pt too wide) in paragraph at lines 1805--1805
+[]\T1/pcr/m/n/12 ##             a1[i]*covSite1[j] + a2[i]*pow(covSite1[j],2) #+ #altitude effect[] 
+ []
+
+
+Overfull \hbox (387.04462pt too wide) in paragraph at lines 1805--1805
+[]\T1/pcr/m/n/12 ##     mu.psi[j,i] <- psi[j,i]*w[i]          #site j could be occupied by species i only if it belongs to the community[] 
+ []
+
+
+Overfull \hbox (55.84476pt too wide) in paragraph at lines 1805--1805
+[]\T1/pcr/m/n/12 ##     #if species i belongs to the community: mu.psi=psi, else: mu.psi=0[] 
+ []
+
+
+Overfull \hbox (243.04468pt too wide) in paragraph at lines 1805--1805
+[]\T1/pcr/m/n/12 ##     Z[j,i] ~ dbern(mu.psi[j,i])           #binary indicator: species i presents or not in site j[] 
+ []
+
+
+Overfull \hbox (70.24475pt too wide) in paragraph at lines 1805--1805
+[]\T1/pcr/m/n/12 ##     #Create a loop to estimate detection for species i at point j during[] 
+ []
+
+
+Overfull \hbox (19.84477pt too wide) in paragraph at lines 1805--1805
+[]\T1/pcr/m/n/12 ##                         b2[i]*covDetection2[j,k] + #sweep netting[] 
+ []
+
+
+Overfull \hbox (221.44469pt too wide) in paragraph at lines 1805--1805
+[]\T1/pcr/m/n/12 ##                         b3[i]*covDetection0[j,k]*covDetection3[j,k] #+ #sighting*grass height[] 
+ []
+
+
+Overfull \hbox (199.8447pt too wide) in paragraph at lines 1805--1805
+[]\T1/pcr/m/n/12 ##                         #b4[i]*covDetection2[j,k]*covDetection3[j,k] #netting*grass height[] 
+ []
+
+
+Overfull \hbox (408.6446pt too wide) in paragraph at lines 1805--1805
+[]\T1/pcr/m/n/12 ##     mu.p[j,k,i] <- p[j,k,i]*Z[j,i]    #species i could be detected in site j during survey k only if site j is occupied[] 
+ []
+
+
+Overfull \hbox (394.24461pt too wide) in paragraph at lines 1805--1805
+[]\T1/pcr/m/n/12 ##     X[j,k,i] ~ dbern(mu.p[j,k,i])     #binary indicator observed: species i detected or not in site j during survey k[] 
+ []
+
+
+Overfull \hbox (5.44478pt too wide) in paragraph at lines 1805--1805
+[]\T1/pcr/m/n/12 ##     #Create simulated dataset to calculate the Bayesian p-value[] 
+ []
+
+[31]
+Overfull \hbox (77.44475pt too wide) in paragraph at lines 1805--1805
+[]\T1/pcr/m/n/12 ##     #Sum all species observed (n) and unobserved species (n0) to find the[] 
+ []
+
+
+Overfull \hbox (55.84476pt too wide) in paragraph at lines 1805--1805
+[]\T1/pcr/m/n/12 ##     #Create a loop to determine point level richness estimates for the[] 
+ []
+
+
+Overfull \hbox (135.04472pt too wide) in paragraph at lines 1805--1805
+[]\T1/pcr/m/n/12 ##  J K X covDetection0 covDetection1 covDetection2 covDetection3 covSite1 n nzeroes[] 
+ []
+
+[32] [33] (./Rmd_Paper_MSOM.aux)
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: There were multiply-defined labels.
+
+Package rerunfilecheck Info: File `Rmd_Paper_MSOM.out' has not changed.
+(rerunfilecheck)             Checksum: F2434C45932D7F47D0E976D7AAD22E35;4716.
+ ) 
+Here is how much of TeX's memory you used:
+ 13858 strings out of 476931
+ 220735 string characters out of 5825076
+ 622324 words of memory out of 5000000
+ 34411 multiletter control sequences out of 15000+600000
+ 521647 words of font info for 283 fonts, out of 8000000 for 9000
+ 14 hyphenation exceptions out of 8191
+ 60i,6n,67p,1011b,1221s stack positions out of 10000i,1000n,20000p,200000b,200000s
+{/home/bmourgui/.TinyTeX/texmf-dist/fonts/enc/dvips/base/8r.enc}</home/bmourgui/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></home/bmourgui/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></home/bmourgui/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></home/bmourgui/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></home/bmourgui/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></home/bmourgui/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></home/bmourgui/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></home/bmourgui/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></home/bmourgui/.TinyTeX/texmf-dist/fonts/type1/urw/courier/ucrb8a.pfb></home/bmourgui/.TinyTeX/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></home/bmourgui/.TinyTeX/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></home/bmourgui/.TinyTeX/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></home/bmourgui/.TinyTeX/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></home/bmourgui/.TinyTeX/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on Rmd_Paper_MSOM.pdf (33 pages, 791756 bytes).
+PDF statistics:
+ 644 PDF objects out of 1000 (max. 8388607)
+ 551 compressed objects within 6 object streams
+ 163 named destinations out of 1000 (max. 500000)
+ 41169 words of extra memory for PDF output out of 42996 (max. 10000000)
+

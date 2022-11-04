@@ -20,5 +20,5 @@ This repository contains the data and code for our paper:
 
 > Mourguiart, B., Couturier, T., Braud, Y., Mansons, J., Combrisson, D. and Besnard, A. (2021), _`r Title`_. Ecological Entomology, 46: 163-174. <https://doi.org/10.1111/een.12991>. 
 
-Scripts in the folder [Analysis](msom_orthoptera/tree/main/Analyse) allow formatting the data ([creation_data.R](msom_orthoptera/blob/main/Analyse/creation_data.R)) and running the multi-species occupancy model ([Model_paper_published.R](msom_orthoptera/blob/main/Analyse/Model_paper_published.R)) presented in the article. [Redaction/Rmd_Paper_MSOM.Rmd](msom_orthoptera/blob/main/Redaction/Rmd_Paper_MSOM.Rmd) produces the entire manuscript.
+Scripts in the folder [Analysis](tree/main/Analyse) allow formatting the data ([creation_data.R](blob/main/Analyse/creation_data.R)) and running the multi-species occupancy model ([Model_paper_published.R](blob/main/Analyse/Model_paper_published.R)) presented in the article. [Redaction/Rmd_Paper_MSOM.Rmd](blob/main/Redaction/Rmd_Paper_MSOM.Rmd) produces the entire manuscript.
 
